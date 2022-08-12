@@ -17,6 +17,11 @@
         </ul>
     </div>
 @endif
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
 
 <form id="form_editarC" name="form_editarC" method="POST" action="{{ route('categoria.update', $categoria->id) }}" onsubmit="confirmar()">
     @method('put')
