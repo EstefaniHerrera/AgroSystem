@@ -18,6 +18,12 @@
     </div>
 @endif
 
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
+
 <form id="form_editarC" name="form_editarC" method="POST" action="{{ route('cargo.update', $cargo->id) }}" onsubmit="confirmar()">
     @method('put')
     @csrf <!-- PARA PODER ENVIAR EL FORMULARIO -->
