@@ -295,9 +295,13 @@
       </a>
   </div>
 
-
-
-
+  <div class="col-sm-2">
+    <h2 class=""><strong>Catálogos</strong></h2>
+      <a href="/catalogo" >
+        <img src="Imagenes/catalogo.jpeg" class="img-circle person">
+      </a>
+  </div>
+</div>
 
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
