@@ -512,12 +512,22 @@
 
             <section class="ContenidoBarra">
                 @yield('barra')
+                @if (session('errorcontra'))
+                    <div class="alert alert-danger">
+                        {{ session('errorcontra') }}
+                    </div>
+                @endif
                 @yield('contenido')
 
             </section>
 
             <section class="ContenidoBarra2">
                 @yield('barra2')
+                @if (session('errorcontra'))
+                    <div class="alert alert-danger">
+                        {{ session('errorcontra') }}
+                    </div>
+                @endif
 
                 @yield('contenido2')
 
