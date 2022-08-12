@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,9 +19,17 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'username',
+        'id_personal',
         'password',
+        'pregunta_a',
+        'pregunta_b',
+        'pregunta_c'
     ];
+
+   public function personals(){
+        return $this->belongsTo(Personal::class, 'id_personal', 'id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
