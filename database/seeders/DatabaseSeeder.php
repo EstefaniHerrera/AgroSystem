@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriaSeeder::class);
         $this->call(PresentacionSeeder::class);
         $this->call(ProductoSeeder::class);
-
         $this->call(ClienteTableSeeder::class);
         $this->call(ProveedorTableSeeder::class);
         $this->call(CargoTableSeeder::class);
         $this->call(PersonalTableSeeder::class);
+        $this->call(UserTableSeeder::class);
         $this->call(RangoTableSeeder::class);
     }
 }
