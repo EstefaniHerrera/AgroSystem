@@ -1,1 +1,41 @@
+<?php
 
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('username')->unique();
+            $table->string('password');
+            $table->Integer('id_personal');
+            // $table->foreign("id_personal")->references("id")->on("personals");
+            $table->string('pregunta_a');
+            $table->string('pregunta_b');
+            $table->string('pregunta_c');
+            $table->string('email')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('users');
+    }
+};
