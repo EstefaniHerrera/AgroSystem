@@ -43,6 +43,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 /********************************* INICIO DE SESION *********************************/
+Route::get('/usuarios/cambiar_contrasena', [UserController::class, 'cambiar_contrasena'])
+    ->name('usuarios.cambiar_contrasena');
+
+Route::post('usuarios/update_contrasena', [ResetPasswordController::class, 'update_contrasena'])
+    ->name('usuarios.update_contrasena');
 
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
