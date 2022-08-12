@@ -218,6 +218,35 @@
 
   </div>
 
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+              <div class="modal-header" style="background: white; color: black">
+                  <h5 class="modal-title" id="exampleModalLabel" ><br><strong>Cerrar sesión</strong></h5>
+              </div>
+              <div class="modal-body">¿Está seguro que desea cerrar la sesión? <br>
+                Presione si para salir o presione no para cancelar</div>
+              <div class="modal-footer">
+                <div class="row" style="width: 78%">
+                  <div class="col-sm-6">
+                    <form action="{{ route('logout') }}" method="POST">
+                      @csrf
+                      <button class="btn btn-primary  btn-block" type="submit">
+                          {{ __('Si') }}
+                      </button>
+                  </div>
+                  <div class="col-sm-6">
+                    <button id="Boton1" class="btn btn-danger btn-block" type="button" data-dismiss="modal">No</button>
+                  </div>
+                </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
 
 
 <!-- Footer -->
