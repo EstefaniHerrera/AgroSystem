@@ -27,6 +27,7 @@ use App\Http\Controllers\ProductosVencerController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\DevolucionClienteDetalleController;
 use App\Http\Controllers\DevolucionClienteController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
