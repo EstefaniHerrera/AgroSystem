@@ -267,6 +267,34 @@
       <img src="Imagenes/compras.jpeg" class="img-circle person">
     </a>
   </div>
+  <div class="col-sm-2">
+    <h2 class=""><strong>Ventas</strong></h2>
+    <a href="/ventas">
+      <img src="Imagenes/ventas.jpeg" class="img-circle person">
+    </a>
+  </div>
+
+  <div class="col-sm-2">
+    <h2 class=""><strong>Inventario</strong></h2>
+    <a href="/inventario" >
+      <img src="Imagenes/inventario.jpeg" class="img-circle person">
+    </a>
+  </div>
+
+  <div class="col-sm-2">
+    <h2 class=""><strong>Sevicio Técnico</strong></h2>
+      <a href="/Servicio" >
+        <img src="Imagenes/servicio.jpeg" class="img-circle person">
+      </a>
+  </div>
+
+  <div class="col-sm-2">
+    <h2 class=""><strong>Gastos</strong></h2>
+      <a href="/gasto" >
+        <img src="Imagenes/gastos.jpeg" class="img-circle person">
+      </a>
+  </div>
+
 
 
 
