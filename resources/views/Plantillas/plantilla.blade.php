@@ -523,7 +523,101 @@
 
             </section>
 
+            {{-- Modal de cambiar contrseña --}}
+            <div class="modal fade" id="Contrasena" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <!-- PARA LOS ERRORES -->
 
+                        <form id="form_guardar" name="form_guardar" method="POST"
+                            action="{{ route('usuarios.update_contrasena2', ['user' => Auth::user()->id]) }}"
+                            onsubmit="fConfirmar()">
+                            @csrf
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Datos de seguridad para cambio de
+                                    contraseña</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <label for="contrasenaAnterior">Ingrese su contraseña actual</label>
+                                <input id="contrasenaAnterior" type="password"
+                                    class="form-control @error('contrasenaAnterior') is-invalid @enderror"
+                                    name="contrasenaAnterior" value="{{ old('contrasenaAnterior') }}"
+                                    autocomplete="contrasenaAnterior" style="text-transform: capitalize"
+                                    maxlength="20" minlength="8" required>
+                                <br>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label for="password"> Nueva contraseña </label>
+                                        <input type="password"
+                                            class="form-control @error('password') is-invalid @enderror"
+                                            id="password" name="password" placeholder=""
+                                            autocomplete="new-password" required maxlength="20" minlength="8">
+                                    </div>
+
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label for="password-confirm"> Confirmación de contraseña </label>
+                                        <input id="password-confirm" name="password_confirmation" type="password"
+                                            class="form-control" placeholder="" required autocomplete="new-password" maxlength="20" minlength="8">
+                                    </div>
+                                </div>
+
+                                <br>
+                                <input type="submit" class="btn btn-primary" value="Actualizar">
+                                <input type="button" class="btn btn-danger" value="Limpiar" onclick="fRestaurar()">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+
+                        </form>
+
+                        @push('alertas')
+                            <script>
+                                function fRestaurar() {
+                                    $("#contrasenaAnterior").val('');
+                                    $("#password").val('');
+                                    $("#password-confirm").val('');
+                                }
+
+                                function fConfirmar() {
+                                    var formul = document.getElementById("form_guardar");
+                                    Swal.fire({
+                                        title: '¿Está seguro que desea cambiar la contraseña?',
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        cancelButtonText: 'Cancelar',
+                                        confirmButtonText: 'Aceptar'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            formul.submit();
+                                        }
+                                    })
+                                    event.preventDefault()
+                                }
+
+                                function fSoloLetras(evt) {
+                                    var code = (evt.which) ? evt.which : evt.keyCode;
+                                    if (code == 8 || code == 32) {
+                                        return true;
+                                    } else if (code >= 65) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                                }
+                            </script>
+                        @endpush
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
