@@ -32,15 +32,15 @@ class CargoController extends Controller
     public function store(Request $request){
         //VALIDAR
         $request->validate([
-            'NombreCargo'=>'required',
-            'DescripcionCargo'=>'required',
-            'Sueldo'=>'required'
+            'NombreDelCargo'=>'required|unique:cargos|string|max:40|min:5',
+            'DescripciónDelCargo'=>'required|string|max:150|min:5',
+            'Sueldo'=>'required|numeric|min:1000.00|max:30000.00'
         ]);
 
         //Formulario
         $nuevoCargo = new Cargo();
-        $nuevoCargo->NombreCargo = $request->input('NombreCargo');
-        $nuevoCargo->DescripcionCargo = $request->DescripcionCargo;
+        $nuevoCargo->NombreDelCargo = $request->input('NombreDelCargo');
+        $nuevoCargo->DescripciónDelCargo = $request->DescripciónDelCargo;
         $nuevoCargo->Sueldo = $request->input('Sueldo');
 
         $creado = $nuevoCargo->save();

@@ -1,6 +1,24 @@
 @extends('Plantillas.plantilla')
 
 @section('titulo', 'Cargos')
+@section('barra')
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12">
+            <form action="{{route('cargo.index2')}}" method="GET">
+                <div class="form-row">
+                    <div class="col-sm-4 my-1">
+                        <input type="search" class="form-control" name="texto" name="texto" placeholder="Buscar">
+                    </div>
+                    <div class="col-auto my-1">
+                        <input type="submit" class="btn btn-secondary" value="Buscar">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
 @section('contenido')
 @if (session('mensaje'))
         <div class="alert alert-success">
@@ -10,27 +28,27 @@
 
     <h1> Listado De Cargos </h1>
     <br><br>
-    
+
 
     <div class="d-grid gap-2 d-md-block">
         <a class="btn btn-success float-end" href="{{route('cargo.crear')}}"> Agregar Cargo </a>
         <a class="btn btn-success float-end me-md-2" href=""> Regresar </a>
     </div>
-      
-        
+
+
         <br>
-            
+
     {{ $cargos->links()}}
-    
+
     <table class="table table-bordered border-dark">
         <thead class="table-dark">
             <tr class="success">
-                <th scope="col">Id</th>
+                <th scope="col">N°</th>
                 <th scope="col">Nombre del Cargo</th>
                 <th scope="col">Descripción del Cargo</th>
                 <th scope="col">Sueldo</th>
                 <th scope="col">Editar</th>
-            </tr>  
+            </tr>
         </thead>
         <tbody>
         @forelse ($cargos as $cargo)
@@ -44,10 +62,10 @@
         @empty
             <tr>
                 <td colspan="4"> No hay más cargos </td>
-            </tr>    
+            </tr>
         @endforelse
 
         </tbody>
     </table>
-    
+
 @endsection

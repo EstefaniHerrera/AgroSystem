@@ -29,10 +29,10 @@ class PersonalController extends Controller
 
         $personals = DB::table('Personals')
                         ->where('NombrePersonal', 'LIKE', '%'.$texto.'%')
-                        ->where('ApellidoPersonal', 'LIKE', '%'.$texto.'%')
+                        ->orwhere('ApellidoPersonal', 'LIKE', '%'.$texto.'%')
                         ->orWhere('EmpleadoActivo', '=', $texto)
                         ->paginate(10);
-        return view('buscarPersonal', compact('personals', 'texto'));
+        return view('raizPersonal', compact('personals', 'texto'));
     }
 
     //funcion para mostrar
@@ -54,14 +54,14 @@ class PersonalController extends Controller
 
         $request->validate([
             'Cargo'=>'required',
-            'IdentidadPersonal'=>'required|unique:personals',
-            'NombrePersonal'=>'required',
-            'ApellidoPersonal'=>'required',
-            'CorreoElectronico'=>'required|email|unique:personals',
+            'IdentidadPersonal'=>'required|unique:personals|max:13',
+            'NombrePersonal'=>'required||max:20',
+            'ApellidoPersonal'=>'required|max:40',
+            'CorreoElectronico'=>'required|email|unique:personals|max:40',
             'Telefono'=>'required',
             'FechaNacimiento'=>'required',
-            'Ciudad'=>'required',
-            'Direccion'=>'required'
+            'Ciudad'=>'required|max:20',
+            'Direccion'=>'required|max:150'
         ]);
 
         //Formulario
@@ -99,15 +99,15 @@ class PersonalController extends Controller
 
         $request->validate([
             'Cargo'=>'required|integer',
-            'IdentidadPersonal'=>'required|max:255',
-            'NombrePersonal'=>'required|max:255',
-            'ApellidoPersonal'=>'required|max:255',
-            'CorreoElectronico'=>'required|email|max:255',
-            'Telefono'=>'required|max:255',
+            'IdentidadPersonal'=>'required|max:13',
+            'NombrePersonal'=>'required|max:20',
+            'ApellidoPersonal'=>'required|max:40',
+            'CorreoElectronico'=>'required|email|max:40',
+            'Telefono'=>'required|max:8',
             'FechaNacimiento'=>'required|date',
             'FechaIngreso'=>'required|date',
-            'Ciudad'=>'required|max:255',
-            'Direccion'=>'required|max:255'
+            'Ciudad'=>'required|max:20',
+            'Direccion'=>'required|max:150'
         ]);
 
         $personal = Personal::findOrFail($id);;
@@ -133,14 +133,7 @@ class PersonalController extends Controller
     }
 
     public function updateStatus($id){
-        //  $personal = Personal::findOrFail($request->id);
         $personal = Personal::findOrFail($id);
-       /* if ($request->EmpleadoActivo == 0) {
-            $newStatus = false;
-        } else {
-            $newStatus = true;
-        }
-        return response()->json(['var'=>$newStatus]); */
 
         if($personal->EmpleadoActivo == 1){
             $personal->EmpleadoActivo = false;
@@ -153,7 +146,7 @@ class PersonalController extends Controller
 
         if($creado){
             return redirect()->route('personal.index')
-                ->with('mensaje', 'El empleado fue modificado exitosamente');
+                ->with('mensaje', 'El estado fue modificado exitosamente');
         }else{
             //retornar con un mensaje de error
         }
