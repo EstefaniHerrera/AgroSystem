@@ -661,8 +661,7 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
     Route::post('/usuarios/crear', [UserController::class, 'store'])
     ->name('usuarios.guardar');
     
-    
-
-    
+    Route::get('/destroyUsuario/{id}', [UserController::class, 'eliminar'])
+    ->name('usuarios.destroy')->where('id', '[0-9]+');
    
  });
