@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
@@ -5,4 +6,23 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/Login.iml" filepath="$PROJECT_DIR$/.idea/Login.iml" />
     </modules>
   </component>
+=======
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Login.iml" filepath="$PROJECT_DIR$/.idea/Login.iml" />
+    </modules>
+  </component>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Login.iml" filepath="$PROJECT_DIR$/.idea/Login.iml" />
+    </modules>
+  </component>
+>>>>>>> 6f707ed4044a23c501f0dd4a573f6745d691decb
+>>>>>>> Stashed changes
 </project>
