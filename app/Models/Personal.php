@@ -12,4 +12,8 @@ class Personal extends Model
     public function cargo(){
         return $this->belongsTo(Cargo::class);
     }
+    
+    public function users(){
+        return $this->hasMany(User::class);
+    }
 }
