@@ -1,19 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Validation\Rule;
 
 use App\Models\Cargo;
 use App\Models\Personal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Boolean;
+use withQueryString;
 
 class PersonalController extends Controller
 {
 
     public function index(){
+        $texto = '';
         $personal = Personal::paginate(10);
-        return view('raizpersonal')->with('personals', $personal);
+        return view('Personal.raizpersonal')->with('personals', $personal)
+                                            ->with('texto', $texto);
     }
 
     //funcion para la barra
@@ -21,61 +24,57 @@ class PersonalController extends Controller
 
         $texto =trim($request->get('texto'));
 
-        if($texto == 'Activo'){
-            $texto = 1;
-        }else if(($texto == 'Inactivo')){
-            $texto = 0;
-        }
-
         $personals = DB::table('Personals')
-                        ->where('NombrePersonal', 'LIKE', '%'.$texto.'%')
-                        ->orwhere('ApellidoPersonal', 'LIKE', '%'.$texto.'%')
-                        ->orWhere('EmpleadoActivo', '=', $texto)
-                        ->paginate(10);
-        return view('raizPersonal', compact('personals', 'texto'));
+                        ->select('*')
+                        ->where('IdentidadDelEmpleado', 'LIKE', '%'.$texto.'%')
+                        ->orwhere('NombresDelEmpleado', 'LIKE', '%'.$texto.'%')
+                        ->orwhere('ApellidosDelEmpleado', 'LIKE', '%'.$texto.'%')
+                        ->orWhere('EmpleadoActivo', 'LIKE', $texto)
+                        ->paginate(10)->withQueryString();
+        return view('Personal.raizpersonal', compact('personals', 'texto'));
     }
 
     //funcion para mostrar
     public function show($id){
         $cargos = Cargo::all();
         $personal = Personal::findOrFail($id);
-        return view('verPersonal', compact('cargos'))->with('personal', $personal);
+        return view('Personal.verPersonal', compact('cargos'))->with('personal', $personal);
     }
 
     //funcion para crear o insertar datos
     public function crear(){
         $cargos = Cargo::all();
-        return view('formularioPersonal', compact('cargos'));
+        return view('Personal.formularioPersonal', compact('cargos'));
     }
 
     //funcion para guardar los datos creados o insertados
     public function store(Request $request){
         //VALIDAR
-
         $request->validate([
             'Cargo'=>'required',
-            'IdentidadPersonal'=>'required|unique:personals|max:13',
-            'NombrePersonal'=>'required||max:20',
-            'ApellidoPersonal'=>'required|max:40',
-            'CorreoElectronico'=>'required|email|unique:personals|max:40',
-            'Telefono'=>'required',
-            'FechaNacimiento'=>'required',
+            'IdentidadDelEmpleado'=>'required|unique:personals|max:13',
+            'NombresDelEmpleado'=>'required||max:30',
+            'ApellidosDelEmpleado'=>'required|max:40',
+            'CorreoElectrónico'=>'required|email|unique:personals|max:40',
+            'Teléfono'=>'required|unique:personals',
+            'FechaDeNacimiento'=>'required|date',
+            'FechaDeIngreso'=>'required|date',
             'Ciudad'=>'required|max:20',
-            'Direccion'=>'required|max:150'
+            'Dirección'=>'required|max:150'
         ]);
 
         //Formulario
         $nuevoPersonal = new Personal();
         $nuevoPersonal->cargo_id = $request->Cargo;
-        $nuevoPersonal->IdentidadPersonal = $request->input('IdentidadPersonal');
-        $nuevoPersonal->NombrePersonal = $request->input('NombrePersonal');
-        $nuevoPersonal->ApellidoPersonal = $request->input('ApellidoPersonal');
-        $nuevoPersonal->CorreoElectronico = $request->input('CorreoElectronico');
-        $nuevoPersonal->Telefono = $request->input('Telefono');
-        $nuevoPersonal->FechaNacimiento = $request->input('FechaNacimiento');
-        $nuevoPersonal->FechaIngreso = $request->input('FechaIngreso');
+        $nuevoPersonal->IdentidadDelEmpleado = $request->input('IdentidadDelEmpleado');
+        $nuevoPersonal->NombresDelEmpleado = $request->input('NombresDelEmpleado');
+        $nuevoPersonal->ApellidosDelEmpleado = $request->input('ApellidosDelEmpleado');
+        $nuevoPersonal->CorreoElectrónico = $request->input('CorreoElectrónico');
+        $nuevoPersonal->Teléfono = $request->input('Teléfono');
+        $nuevoPersonal->FechaDeNacimiento = $request->input('FechaDeNacimiento');
+        $nuevoPersonal->FechaDeIngreso = $request->input('FechaDeIngreso');
         $nuevoPersonal->Ciudad = $request->input('Ciudad');
-        $nuevoPersonal->Direccion = $request->input('Direccion');
+        $nuevoPersonal->Dirección = $request->input('Dirección');
         $creado = $nuevoPersonal->save();
 
         if($creado){
@@ -90,39 +89,53 @@ class PersonalController extends Controller
     public function edit($id){
         $cargos = Cargo::all();
         $personal = Personal::findOrFail($id);
-        return view('formularioEditarPersonal', compact('cargos'))->with('personal', $personal);
+        return view('Personal.formularioEditarPersonal', compact('cargos'))->with('personal', $personal);
 
     }
 
     //funcion para actualizar los datos
     public function update(Request $request, $id){
 
+        $personal = Personal::findOrFail($id);
+
         $request->validate([
-            'Cargo'=>'required|integer',
-            'IdentidadPersonal'=>'required|max:13',
-            'NombrePersonal'=>'required|max:20',
-            'ApellidoPersonal'=>'required|max:40',
-            'CorreoElectronico'=>'required|email|max:40',
-            'Telefono'=>'required|max:8',
-            'FechaNacimiento'=>'required|date',
-            'FechaIngreso'=>'required|date',
+            'Cargo'=>'required',
+            'IdentidadDelEmpleado'=> [
+                'required',
+                'max:13',
+                Rule::unique('personals')->ignore($personal->id),
+            ],
+            'NombresDelEmpleado'=>'required|max:30',
+            'ApellidosDelEmpleado'=>'required|max:40',
+            'CorreoElectrónico'=> [
+                'required',
+                'email',
+                'max:40',
+                Rule::unique('personals')->ignore($personal->id),
+            ],
+            'Teléfono'=>[
+                'required',
+                'max:8',
+                Rule::unique('personals')->ignore($personal->id),
+            ],
+            'FechaDeNacimiento'=>'required|date',
+            'FechaDeIngreso'=>'required|date',
             'Ciudad'=>'required|max:20',
-            'Direccion'=>'required|max:150'
+            'Dirección'=>'required|max:150'
         ]);
 
-        $personal = Personal::findOrFail($id);;
         $personal->cargo_id = $request->Cargo;
-        $personal->IdentidadPersonal = $request->input('IdentidadPersonal');
-        $personal->NombrePersonal = $request->input('NombrePersonal');
-        $personal->ApellidoPersonal = $request->input('ApellidoPersonal');
-        $personal->CorreoElectronico = $request->input('CorreoElectronico');
-        $personal->Telefono = $request->input('Telefono');
-        $personal->FechaNacimiento = $request->input('FechaNacimiento');
-        $personal->FechaIngreso = $request->input('FechaIngreso');
+        $personal->IdentidadDelEmpleado = $request->input('IdentidadDelEmpleado');
+        $personal->NombresDelEmpleado = $request->input('NombresDelEmpleado');
+        $personal->ApellidosDelEmpleado = $request->input('ApellidosDelEmpleado');
+        $personal->CorreoElectrónico = $request->input('CorreoElectrónico');
+        $personal->Teléfono = $request->input('Teléfono');
+        $personal->FechaDeNacimiento = $request->input('FechaDeNacimiento');
+        $personal->FechaDeIngreso = $request->input('FechaDeIngreso');
         $personal->Ciudad = $request->input('Ciudad');
-        $personal->Direccion = $request->input('Direccion');
+        $personal->Dirección = $request->input('Dirección');
 
-        $creado = $personal->save();
+        $creado = $personal->update();
 
         if($creado){
             return redirect()->route('personal.index')
@@ -135,11 +148,11 @@ class PersonalController extends Controller
     public function updateStatus($id){
         $personal = Personal::findOrFail($id);
 
-        if($personal->EmpleadoActivo == 1){
-            $personal->EmpleadoActivo = false;
+        if($personal->EmpleadoActivo == 'Activo'){
+            $personal->EmpleadoActivo = 'Inactivo';
         }
-        else if(($personal->EmpleadoActivo == 0)){
-            $personal->EmpleadoActivo = true;
+        else if(($personal->EmpleadoActivo == 'Inactivo')){
+            $personal->EmpleadoActivo = 'Activo';
         }
 
         $creado = $personal->save();

@@ -1,5 +1,4 @@
 @extends('Plantillas.plantilla')
-
 @section('titulo', 'Cargos')
 @section('barra')
 <div class="container">
@@ -7,11 +6,12 @@
         <div class="col-xl-12">
             <form action="{{route('cargo.index2')}}" method="GET">
                 <div class="form-row">
-                    <div class="col-sm-4 my-1">
-                        <input type="search" class="form-control" name="texto" name="texto" placeholder="Buscar">
+                    <div class="col-sm-6 my-1">
+                        <input type="search" class="form-control" name="texto" value="{{$texto}}" name="texto" placeholder="Buscar por nombre del cargo">
                     </div>
                     <div class="col-auto my-1">
-                        <input type="submit" class="btn btn-secondary" value="Buscar">
+                        <input type="submit" class="btn" style="background-color:gray; border-color:black; color:white" value="Buscar">
+                        <a href="{{ route('cargo.index') }}" class="btn my-8" style="background-color:gray; border-color:black; color:white">Borrar búsqueda</a>
                     </div>
                 </div>
             </form>
@@ -26,38 +26,38 @@
         </div>
     @endif
 
-    <h1> Listado De Cargos </h1>
+    <br><br>
+    <h1> Listado de cargos </h1>
     <br><br>
 
-
     <div class="d-grid gap-2 d-md-block">
-        <a class="btn btn-success float-end" href="{{route('cargo.crear')}}"> Agregar Cargo </a>
-        <a class="btn btn-success float-end me-md-2" href=""> Regresar </a>
+        <a class="btn" style="background-color:rgb(65, 145, 126); border-color:black; color:white" href="{{route('cargo.crear')}}"> <span class="glyphicon glyphicon-plus"></span> Agregar cargo </a>
     </div>
-
 
         <br>
 
     {{ $cargos->links()}}
 
-    <table class="table table-bordered border-dark">
-        <thead class="table-dark">
-            <tr class="success">
+    <table class="table table-bordered border-dark mt-3">
+        <thead class="thead-dark">
+            <tr class="info">
                 <th scope="col">N°</th>
-                <th scope="col">Nombre del Cargo</th>
-                <th scope="col">Descripción del Cargo</th>
+                <th scope="col">Nombre del cargo</th>
+                <th scope="col">Descripción del cargo</th>
                 <th scope="col">Sueldo</th>
-                <th scope="col">Editar</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
         @forelse ($cargos as $cargo)
             <tr class="active">
                 <th scope="row">{{ $cargo->id }}</th>
-                <td scope="col">{{ $cargo->NombreCargo }}</td>
-                <td scope="col">{{ $cargo->DescripcionCargo }}</td>
+                <td scope="col">{{ $cargo->NombreDelCargo }}</td>
+                <td scope="col">{{ $cargo->DescripciónDelCargo }}</td>
                 <td scope="col">{{ $cargo->Sueldo }}</td>
-                <td> <a class="btn btn-success" href="{{ route('cargo.edit',['id' => $cargo->id]) }}"> Editar </a></td>
+                <td> <a class="btn" style="background-color:white; border-color:black; color:black" href="{{ route('cargo.edit',['id' => $cargo->id]) }}"> 
+                    <span class="glyphicon glyphicon-edit"></span> Editar </a>
+                </td>
             </tr>
         @empty
             <tr>
@@ -67,5 +67,4 @@
 
         </tbody>
     </table>
-
 @endsection

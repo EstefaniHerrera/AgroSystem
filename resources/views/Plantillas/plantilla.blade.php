@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>@yield('titulo')</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-         <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        {{--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">--}}
-        <!-- Our Custom CSS -->
-        {{-- <link rel="stylesheet" href="style4.css"> --}}
+    <title>@yield('titulo')</title>
 
-        <style>
-            {{-- DEMO STYLE --}}
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.0.3/dist/css/tom-select.css" rel="stylesheet">
 
-        @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+    <style>
+        .select2-container {
+            width: 100% !important;
+        }
+
+        .select2-search--dropdown .select2-search__field {
+            width: 98%;
+        }
+
+        {{-- DEMO STYLE --}} @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: Century Gothic;
             background: #ffffff;
+            font-size: small;
         }
 
         p {
@@ -44,7 +51,8 @@
             border: none;
             border-radius: 0;
             margin-bottom: 40px;
-            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 6px 6px 8px #90c8ac;
+            ;
         }
 
         .navbar-btn {
@@ -67,17 +75,25 @@
 
         {{-- /* ---------------------------------------------------
             SIDEBAR STYLE
-        ----------------------------------------------------- */ --}}
-
-        .wrapper {
+        ----------------------------------------------------- */ --}} .wrapper {
             display: flex;
             align-items: stretch;
         }
 
+        #button1 {
+            height: 35px;
+            width: 200px;
+            margin: -5px -25px;
+            position: relative;
+            top: 30%;
+            left: 50%;
+        }
+
         #sidebar {
-            min-width: 250px;
-            max-width: 250px;
-            background: #3a993e;
+            flex-wrap: wrap;
+            min-width: 15%;
+            max-width: 15%;
+            background: #90c8ac;
             color: #fff;
             transition: all 0.3s;
         }
@@ -129,7 +145,7 @@
 
         #sidebar .sidebar-header {
             padding: 20px;
-            background: #0b6622;
+            background: rgb(65, 145, 126);
         }
 
         #sidebar .sidebar-header strong {
@@ -144,7 +160,7 @@
 
         #sidebar ul li a {
             padding: 10px;
-            font-size: 1.1em;
+            font-size: 1.0em;
             display: block;
         }
 
@@ -160,7 +176,7 @@
         #sidebar ul li.active>a,
         a[aria-expanded="true"] {
             color: #fff;
-            background: #3a993e;
+            background: #90c8ac;
         }
 
         a[data-toggle="collapse"] {
@@ -193,29 +209,55 @@
             margin-bottom: 5px;
         }
 
-
-       {{--  /* ---------------------------------------------------
+        {{-- /* ---------------------------------------------------
             CONTENT STYLE
-        ----------------------------------------------------- */ --}}
+        ----------------------------------------------------- */ --}} .wrapper {
+            width: 100%;
+            /* max-width: 1000px;*/
+            min-height: 100vh;
+            transition: all 0.3s;
+        }
 
         #content {
+            /* PARA QUE NO SALGA LA OTRA BARRA */
+            overflow: hidden;
             width: 100%;
-            padding: 20px;
-            min-height: 100vh;
+            padding: 2%;
+            min-height: 40vh;
+            transition: all 0.3s;
+        }
+
+        .ContenidoBarra2 {
+            display: none;
+        }
+
+        .ContenidoBarra {
+            width: 100%;
+
+            height: 5%;
+            padding: 5px;
+            min-height: 5vh;
+            transition: all 0.3s;
+        }
+
+        #barras {
+            width: 95%;
+            height: 45px;
+            padding: 5px;
+            margin-left: 50px;
+            min-height: 5vh;
             transition: all 0.3s;
         }
 
         {{-- /* ---------------------------------------------------
             MEDIAQUERIES
-        ----------------------------------------------------- */ --}}
-
-        @media (max-width: 768px) {
+        ----------------------------------------------------- */ --}} @media (max-width: 868px) {
             #sidebar {
                 min-width: 80px;
                 max-width: 80px;
                 text-align: center;
-                margin-left: -80px !important;
             }
+
             .dropdown-toggle::after {
                 top: auto;
                 bottom: 10px;
@@ -224,150 +266,256 @@
                 -ms-transform: translateX(50%);
                 transform: translateX(50%);
             }
+
             #sidebar.active {
                 margin-left: 0 !important;
             }
+
             #sidebar .sidebar-header h3,
             #sidebar .CTAs {
                 display: none;
             }
+
             #sidebar .sidebar-header strong {
                 display: block;
             }
+
             #sidebar ul li a {
                 padding: 20px 10px;
             }
+
             #sidebar ul li a span {
                 font-size: 0.85em;
             }
+
             #sidebar ul li a i {
                 margin-right: 0;
                 display: block;
             }
+
             #sidebar ul ul a {
                 padding: 10px !important;
             }
+
             #sidebar ul li a i {
                 font-size: 1.3em;
             }
+
             #sidebar {
                 margin-left: 0;
             }
+
             #sidebarCollapse span {
                 display: none;
             }
         }
     </style>
-    </head>
-    <body>
+</head>
 
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header" id="nombre">
+                <h3>AGRO System</h3>
+                <strong>AS</strong>
+            </div>
 
+            <ul class="list-unstyled components">
+                <li>
+                    <a href='/principal' aria-expanded="true">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Inicio
+                    </a>
+                </li>
+                <li>
+                    <a href="/cargos" aria-expanded="true">
+                        <i class="glyphicon glyphicon-briefcase"></i>
+                        Cargos
+                    </a>
+                </li>
 
-        <div class="wrapper">
-            <!-- Sidebar Holder -->
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>AGRO System</h3>
-                    <strong>AS</strong>
-                </div>
+                <li>
+                    <a href="/personals" aria-expanded="true">
+                        <i class="glyphicon glyphicon-user"></i>
+                        Personal
+                    </a>
+                </li>
 
-                <ul class="list-unstyled components">
-                    <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                            <i class="glyphicon glyphicon-home"></i>
-                            Menú
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-briefcase"></i>
-                            Cargos
-                        </a>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
-                            <i class="glyphicon glyphicon-duplicate"></i>
-                            Personal
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-link"></i>
-                            Proveedores
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-paperclip"></i>
-                            Clientes
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-send"></i>
-                            Productos
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+                <li>
+                    <a href="/proveedors" aria-expanded="true">
+                        <i class="glyphicon glyphicon-log-in"></i>
+                        Proveedores
+                    </a>
+                </li>
+                <li>
+                    <a href="/clientes" aria-expanded="true">
+                        <i class="glyphicon glyphicon-user"></i>
+                        Clientes
+                    </a>
+                </li>
+                <li>
+                    <a href="/categorias" aria-expanded="true">
+                        <i class="glyphicon glyphicon-tags"></i>
+                        Categorías
+                    </a>
+                </li>
+                <li>
+                    <a href="/productos" aria-expanded="true">
+                        <i class="glyphicon glyphicon-qrcode"></i>
+                        Productos
+                    </a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                        Compras
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/compras">Lista de compras</a>
+                        </li>
+                        <li>
+                            <a href="/pedidosProveedor">Lista de pedidos</a>
+                        </li>
+                        <li>
+                            <a href="/compra">Facturas por vencer</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="glyphicon glyphicon-piggy-bank"></i>
+                        Ventas
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu1">
+                        <li>
+                            <a href="/ventas">Lista de ventas</a>
+                        </li>
+                        <li>
+                            <a href="/pedidosClientes">Lista de pedidos</a>
+                        </li>
+                        <li>
+                            <a href="/pedidosProductoNuevoClientes">Lista de pedidos nuevos</a>
+                        </li>
+                        <li>
+                            <a href="/devolucioncliente">Lista de devoluciones</a>
+                        </li>
+                        <li>
+                            <a href="/cotizaciones/crear">Cotizaciones</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="glyphicon glyphicon-list-alt"></i>
+                        Inventario
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu2">
+                        <li>
+                            <a href="/inventario"> Lista de inventario </a>
+                        </li>
+                        <li>
+                            <a href="/Inventarios"> Productos por agotar</a>
+                        </li>
+                    </ul>
+                </li>
 
-            <!-- Page Content Holder -->
-            <div id="content">
+                <li>
+                    <a href="/Servicio" aria-expanded="true">
+                        <i class="glyphicon glyphicon-tasks"></i>
+                        Servicio Técnico
+                    </a>
+                </li>
 
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
+                <li>
+                    <a href="/gasto" aria-expanded="true">
+                        <i class="glyphicon glyphicon-usd"></i>
+                        Gastos
+                    </a>
+                </li>
+                <li>
+                    <a href="/catalogo" aria-expanded="true">
+                        <i class="glyphicon glyphicon-book"></i>
+                        Catálogos
+                    </a>
+                </li>
+                <li>
+                    <a href="/usuarios" aria-expanded="true">
+                        <i class="glyphicon glyphicon-user"></i>
+                        Usuarios
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-                        <div class="navbar-header">
-                            <button type="button" id="sidebarCollapse" class="btn btn-success navbar-btn">
-                                <i class="glyphicon glyphicon-align-left"></i>
-                                <span></span>
-                            </button>
-                        </div>
-
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Page</a></li>
-                                <li><a href="#">Page</a></li>
-                                <li><a href="#">Page</a></li>
-                                <li><a href="#">Page</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-
-                @yield('barra')
+        <!-- Page Content Holder -->
+        <div id="content">
+            <div class="navbar-header">
+                <button type="button" id="sidebarCollapse" class="btn"
+                    style="background-color:rgb(65, 145, 126); border-color:black; color:white">
+                    <i class="glyphicon glyphicon-align-left"></i>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="navbar navbar-default" id="barras">
 
                 <div class="container-fluid">
-                      <!-- Begin page content -->
-                    <main class="flex-shrink-0">
-                        <div class="container">
-                            <br>
-                        @yield('contenido')
-                        </div>
-                    </main>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            {{-- <li><a href="#">Page</a></li> --}}
+                            
+                        </ul>
+                    </div>
                 </div>
-            </div>
+
+            </nav>
+            
+
+            <section class="ContenidoBarra">
+                @yield('barra')
+                @yield('contenido')
+
+            </section>
+
+            <section class="ContenidoBarra2">
+                @yield('barra2')
+
+                @yield('contenido2')
+
+            </section>
+
+
+
         </div>
-        </div>
+    </div>
 
 
 
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <!-- jQuery CDN -->
-         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-         <!-- Bootstrap Js CDN -->
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap Js CDN -->
+    <script src="../../js/bootstrap.min.js"></script>
 
-         <script type="text/javascript">
-             $(document).ready(function () {
-                 $('#sidebarCollapse').on('click', function () {
-                     $('#sidebar').toggleClass('active');
-                 });
-             });
-
-         </script>
-
-         @stack('alertas')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
 
 
-    </body>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.0.3/dist/js/tom-select.complete.min.js"></script>
+    @stack('alertas')
+
+</body>
+
 </html>
