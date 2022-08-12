@@ -232,7 +232,19 @@
             <img src="Imagenes/personal.jpeg" class="img-circle person">
           </a>
     </div>
+    <div class="col-sm-2">
+      <h2 class=""><strong>Proveedores</strong></h2>
+        <a href="/proveedors" >
+          <img src="Imagenes/proveedores.jpeg" class="img-circle person">
+        </a>
+  </div>
 
+  <div class="col-sm-2">
+      <h2 class=""><strong>Clientes</strong></h2>
+        <a href="/clientes" >
+          <img src="Imagenes/clientes.jpeg" class="img-circle person">
+        </a>
+  </div>
 
 
 
