@@ -654,6 +654,14 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
 
     Route::get('/usuarios/buscar', [UserController::class, 'index2'])
     ->name('usuarios.index2');
+    
+    Route::get('/usuarios/crear', [UserController::class, 'create'])
+    ->name('usuarios.crear');
+
+    Route::post('/usuarios/crear', [UserController::class, 'store'])
+    ->name('usuarios.guardar');
+    
+    
 
     
    
