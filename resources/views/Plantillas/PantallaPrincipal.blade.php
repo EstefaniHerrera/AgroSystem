@@ -305,14 +305,6 @@
 </div>
 
 
->>>>>>> ff4bf5c7223a9c9cae6490d0ebb96add932be692
-
-    <div class="col-sm-2">
-      <h2 class=""><strong>Personal</strong></h2>
-          <a href="/personals">
-            <img src="Imagenes/personal.jpeg" class="img-circle person">
-          </a>
-    </div>
 
 <!-- Footer -->
 <footer class="text-center">
