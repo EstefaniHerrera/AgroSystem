@@ -665,6 +665,12 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
 
     Route::post('/usuarios/crear', [UserController::class, 'store'])
     ->name('usuarios.guardar');
+
+    Route::get('/usuarios/cambiar_contrasena2', [UserController::class, 'cambiar_contrasena2'])
+    ->name('usuarios.cambiar_contrasena2');
+
+    Route::post('usuarios/update_contrasena2/{user}', [ResetPasswordController::class, 'update_contrasena2'])
+    ->name('usuarios.update_contrasena2');
     
     Route::get('/destroyUsuario/{id}', [UserController::class, 'eliminar'])
     ->name('usuarios.destroy')->where('id', '[0-9]+');
