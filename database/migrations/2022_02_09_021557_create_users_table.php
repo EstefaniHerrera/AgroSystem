@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->Integer('id_personal');
-            // $table->foreign("id_personal")->references("id")->on("personals");
             $table->string('pregunta_a');
             $table->string('pregunta_b');
             $table->string('pregunta_c');
