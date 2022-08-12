@@ -15,6 +15,11 @@
             </ul>
         </div>
     @endif
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
 
     <div class="row" style="width: 87%">
         <div class="col-sm-6">
