@@ -15,6 +15,11 @@
             </ul>
         </div>
     @endif
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
 
 
     <form id="form_guardar" name="form_guardar" method="POST" action="{{ route('compras.guardar') }}" onsubmit="confirmar()">
