@@ -216,11 +216,27 @@
       </div> 
   </div>
 
+</div>
+
+<div id="Accesos" class="row bg-grey">
+    <div class="col-sm-2">
+      <h2 class=""><strong>Usuarios</strong></h2>
+        <a href="/usuarios" >
+          <img src="Imagenes/usuario.jpeg" class="img-circle person">
+        </a>
+    </div>
+
+    <div class="col-sm-2">
+      <h2 class=""><strong>Personal</strong></h2>
+          <a href="/personals">
+            <img src="Imagenes/personal.jpeg" class="img-circle person">
+          </a>
+    </div>
 
 
 
 
-  
+
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
