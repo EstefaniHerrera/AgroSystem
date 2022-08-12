@@ -245,6 +245,28 @@
           <img src="Imagenes/clientes.jpeg" class="img-circle person">
         </a>
   </div>
+  <div class="col-sm-2">
+    <h2 class=""><strong>Categorías</strong></h2>
+      <a href="/categorias">
+        <img src="Imagenes/categorias.jpeg" class="img-circle person">
+      </a>
+  </div>
+
+  <div class="col-sm-2">
+    <h2 class=""><strong>Productos</strong></h2>
+      <a href="/productos" >
+        <img src="Imagenes/producto.jpeg" class="img-circle person">
+      </a>
+  </div>
+</div>
+
+<div class="row bg-grey">
+  <div class="col-sm-2">
+    <h2 class=""><strong>Compras</strong></h2>
+    <a href="compras" >
+      <img src="Imagenes/compras.jpeg" class="img-circle person">
+    </a>
+  </div>
 
 
 
