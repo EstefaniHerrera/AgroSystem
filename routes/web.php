@@ -645,5 +645,16 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
 
     Route::get('/destroyCatalogo/{id}', [CatalogoController::class, 'eliminar'])
     ->name('status.destroy')->where('id', '[0-9]+');
+    
+    
+    /********************************* USUARIOS *********************************/
+
+    Route::get('/usuarios', [UserController::class, 'index'])
+    ->name('usuarios.index');
+
+    Route::get('/usuarios/buscar', [UserController::class, 'index2'])
+    ->name('usuarios.index2');
+
+    
    
  });
