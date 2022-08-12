@@ -145,6 +145,10 @@ class UserController extends Controller
         //
     }
 
+    public function cambiar_contrasena(){
+        $users = User::all();
+        return view('usuarios.formularioCambiarContrasena', compact('users'));
+    }
 
     public function eliminar($id){
     
