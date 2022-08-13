@@ -16,6 +16,11 @@
         </ul>
     </div>
 @endif
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
 
 
 <form id="form_editarP" name="form_editarP" method="POST" action="{{ route('producto.update', $producto->id) }}" onsubmit="confirmar()">
