@@ -10,6 +10,11 @@
             </ul>
         </div>
     @endif
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
