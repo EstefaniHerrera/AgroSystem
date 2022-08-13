@@ -4,6 +4,20 @@
 
 <h1> Detalles del producto {{$producto->NombreDelProducto}}
 </h1>
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
 <br><br>
 <table class="table">
     <thead class="table-secondary">
