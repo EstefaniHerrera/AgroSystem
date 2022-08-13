@@ -17,6 +17,11 @@
         </ul>
     </div>
 @endif
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
 
 <form id="form_guardarC" name="form_guardarC" method="POST" action="{{ route('gasto.guardar') }}" onsubmit="confirmar()">
     @csrf
