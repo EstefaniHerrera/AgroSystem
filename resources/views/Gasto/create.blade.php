@@ -28,22 +28,11 @@
 
     <div class="form-group">
         <label for="responsable_id"> Responsable </label>
-         <select name="responsable" id="responsable" class="select222" required>
-            @if (old('responsable'))
-                @foreach ($personal as $p)
-                    @if ($p->id == old('responsable'))
-                        <option style="display: none" value="{{old('responsable')}}">{{$p->NombresDelEmpleado}} {{$p->ApellidosDelEmpleado}}</option>
-                    @endif
-                @endforeach
-            @else
-            <option style="display: none" value="">Seleccione al empleado</option>
-            @endif
-            @foreach ($personal as $emple)
-                @if ($emple->EmpleadoActivo == 'Activo')
-                    <option value="{{$emple->id}}">{{$emple->NombresDelEmpleado}} {{$emple->ApellidosDelEmpleado}}</option>  
-                @endif
-            @endforeach
-         </select>
+         
+         <select name="responsable" id="responsable" class="form-control" required style="width: 100%">
+                                <option value="{{ Auth::user()->id_personal }}">{{ Auth::user()->name }}</option>
+                            </select>
+                            
     </div>
 
     <div class="form-group">
