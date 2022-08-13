@@ -532,6 +532,72 @@
                 @yield('contenido2')
 
             </section>
+            {{-- Modal de Informacion --}}
+            <div class="modal fade" id="Informacion" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form method="POST">
+                            @csrf
+                            <div class="modal-header">
+                                <br>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <center>
+                                    <h5 class="modal-title" id="exampleModalLabel"> <em> <strong> Agropecuaria El
+                                                Arriero del Valle
+                                                <br>San Diego, Jamastrán, El Paraíso
+                                            </strong> </em> </h5>
+                                </center>
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="row" style="width: 100%">
+                                    <div>
+                                        <div class="text-center">
+                                            {{-- <h3 class="text-center"><em> <strong> Agropecuaria El Arriero del Valle
+                                                    <br>San Diego, Jamastrán, El Paraíso<br>
+                                                </strong> </em> --}}
+                                            {{-- <div href="#" class="text-center">
+                                                <img src="/Imagenes/logo1.jpeg" class="img-circle person" alt="Random Name"
+                                                     width="255" height="255">
+                                            </div> --}}
+                                            <h5>
+                                                La agropecuaria El Arriero del Valle es una empresa que se dedica a la
+                                                <br>
+                                                venta de productos agrícolas, silvícolas, pecuarias, frutales,
+                                                hortícolas, <br>
+                                                forestales y otros productos alimenticios para satisfacer las
+                                                necesidades <br>
+                                                de la población de San Diego y sus alrededores. <br> <br>
+
+                                                {{-- Garantizamos el crecimiento sostenible de las producciones con alto valor <br>
+                                            agregado, reduciendo los costos de producción para un desarrollo <br>
+                                            económico, seguridad alimentaria y el mejoramiento del medio ambiente. <br> --}}
+                                                El sistema AgroSystem versión 1, fue creado con fines educativos durante
+                                                el <br>
+                                                curso de las clases: Análisis y Diseño de Sistemas y Programación e
+                                                <br>
+                                                Implementación de Sistemas, a finales del año 2021 e inicios del año 2022,
+                                                <br>
+                                                bajo supervisión de la magister Gladys Melissa Nolasco. <br><br>
+
+                                                Este sistema fue elaborado por las estudiantes de UNAH-TEC DANLÍ: <br>
+                                                Belsy Danitza Mairena Garmendia <br>
+                                                Estefani Celeste Herrera Valladares <br>
+                                                Karla Abigail Sierra Paztrana<br>
+                                                Maryury Virsai Chacón López<br>
+                                                Marilyn Jorleny Molina Rodríguez
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
             {{-- Modal de cambiar contrseña --}}
             <div class="modal fade" id="Contrasena" tabindex="-1" role="dialog"
