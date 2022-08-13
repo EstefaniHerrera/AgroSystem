@@ -41,16 +41,8 @@
                     <div class="row" style="width: 100%">
                         <div class="form-group">
                             <label for="Empleado"> Empleado </label>
-                            <select name="Empleado" id="Empleado" class="form-control" required style="width: 100%">
-                                <option style="display: none;" value="">Seleccione un empleado</option>
-                                @foreach ($empleado as $e)
-                                    @if ($e->EmpleadoActivo == 'Activo')
-                                        <option value="{{ $e->id }}"
-                                            @if (old('Empleado') == $e->id) @selected(true) @endif>
-                                            {{ $e->NombresDelEmpleado }}
-                                        </option>
-                                    @endif
-                                @endforeach
+                         <select name="Empleado" id="Empleado" class="form-control" required style="width: 100%">
+                                <option value="{{ Auth::user()->id_personal }}">{{ Auth::user()->name }}</option>
                             </select>
                         </div>
                     </div>
