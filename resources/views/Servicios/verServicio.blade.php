@@ -1,6 +1,20 @@
 @extends('plantillas.plantilla')
 @section('titulo', 'Servicio')
 @section('contenido')
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
 
 <h1> Detalles del técnico  {{$servicio->personal->NombresDelEmpleado}} {{$servicio->personal->ApellidosDelEmpleado}}
 </h1>
