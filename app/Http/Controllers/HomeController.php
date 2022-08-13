@@ -26,5 +26,8 @@ class HomeController extends Controller
         return view('Plantillas.PantallaPrincipal');
     }
 
-   
+    public function bienvenida()
+    {
+        return view('Plantillas.PantallaBienvenida');
+    }
 }
