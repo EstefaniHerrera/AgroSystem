@@ -44,6 +44,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 /********************************* INICIO DE SESION *********************************/
+Route::view('/', 'Plantillas.PantallaBienvenida');
+
 Route::get('/usuarios/cambiar_contrasena', [UserController::class, 'cambiar_contrasena'])
     ->name('usuarios.cambiar_contrasena');
 
