@@ -15,6 +15,13 @@ class CargoTableSeeder extends Seeder
      */
     public function run()
     {
-        Cargo::Factory(5)->create();
+        Cargo::create(
+            [
+                'NombreDelCargo' => 'Administrador',
+                'DescripciónDelCargo' => 'Cargo para el usuario maestro',
+                'Sueldo'  => '0.00',
+            ]
+        );
+        
     }
 }
