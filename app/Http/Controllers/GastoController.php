@@ -239,7 +239,7 @@ class GastoController extends Controller
      */
 
 
-     
+    
     //funcion para editar los datos
     public function edit($id){
         $personal = Personal::all();
