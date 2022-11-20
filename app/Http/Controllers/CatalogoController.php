@@ -128,7 +128,7 @@ class CatalogoController extends Controller{
     public function edit($id){
         $proveedor = Proveedor::all();
         $catalogo = Catalogo::findOrFail($id);
-        return view('Catalogo.formularioEditarCatalogo', compact('catalogo', $catalogo))->with('proveedor', $proveedor);
+        return view('Catalogo.formularioEditarCatalogo', compact('catalogo'))->with('proveedor', $proveedor);
     }
 
     public function update(Request $request, $id){
