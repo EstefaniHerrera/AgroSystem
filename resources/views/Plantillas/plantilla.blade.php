@@ -8,7 +8,10 @@
 
     <title>@yield('titulo')</title>
 
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!-- Librerias-->
+    {{-- <link href="../../css/bootstrap.min.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.0.3/dist/css/tom-select.css" rel="stylesheet">
 
@@ -54,6 +57,7 @@
             box-shadow: 6px 6px 8px #90c8ac;
             ;
         }
+
 
         .navbar-btn {
             box-shadow: none;
@@ -249,6 +253,12 @@
             transition: all 0.3s;
         }
 
+            /*Boton al hacer las dos pantallas*/
+            .navbar-default .navbar-toggle {
+            border-color: black;
+            color: #fff !important;
+        }
+
         {{-- /* ---------------------------------------------------
             MEDIAQUERIES
         ----------------------------------------------------- */ --}} @media (max-width: 868px) {
@@ -308,6 +318,15 @@
             #sidebarCollapse span {
                 display: none;
             }
+
+            /* ///////////////////////////////// */
+            /* .ContenidoBarra2{
+    display: block;
+    width: 70%
+    }
+    .ContenidoBarra{
+    display: none;
+    } */
         }
     </style>
 </head>
@@ -451,17 +470,15 @@
 
         <!-- Page Content Holder -->
         <div id="content">
-            <div class="navbar-header">
+            <div class="">
                 <button type="button" id="sidebarCollapse" class="btn"
                     style="background-color:rgb(65, 145, 126); border-color:black; color:white">
                     <i class="glyphicon glyphicon-align-left"></i>
                     <span></span>
                 </button>
             </div>
-          <nav class="navbar navbar-default" id="barras">
-
+            <nav class="navbar" id="barras">
                 <div class="container-fluid">
-
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             {{-- <li><a href="#">Page</a></li> --}}
@@ -485,12 +502,6 @@
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Cambiar contraseña
                                     </a>
-                                    {{-- <br>
-                                        <a class="dropdown-item" href="#" >
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Información
-                                        </a>
-                                        <br> --}}
                                     <br>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                         data-target="#logoutModal">
@@ -506,9 +517,7 @@
                         </ul>
                     </div>
                 </div>
-
             </nav>
-            
 
             <section class="ContenidoBarra">
                 @yield('barra')
@@ -523,15 +532,11 @@
 
             <section class="ContenidoBarra2">
                 @yield('barra2')
-                @if (session('errorcontra'))
-                    <div class="alert alert-danger">
-                        {{ session('errorcontra') }}
-                    </div>
-                @endif
 
                 @yield('contenido2')
 
             </section>
+
             {{-- Modal de Informacion --}}
             <div class="modal fade" id="Informacion" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -556,31 +561,15 @@
                                 <div class="row" style="width: 100%">
                                     <div>
                                         <div class="text-center">
-                                            {{-- <h3 class="text-center"><em> <strong> Agropecuaria El Arriero del Valle
-                                                    <br>San Diego, Jamastrán, El Paraíso<br>
-                                                </strong> </em> --}}
-                                            {{-- <div href="#" class="text-center">
-                                                <img src="/Imagenes/logo1.jpeg" class="img-circle person" alt="Random Name"
-                                                     width="255" height="255">
-                                            </div> --}}
                                             <h5>
-                                                La agropecuaria El Arriero del Valle es una empresa que se dedica a la
-                                                <br>
-                                                venta de productos agrícolas, silvícolas, pecuarias, frutales,
-                                                hortícolas, <br>
-                                                forestales y otros productos alimenticios para satisfacer las
-                                                necesidades <br>
+                                                La agropecuaria El Arriero del Valle es una empresa que se dedica a la<br>
+                                                venta de productos agrícolas, silvícolas, pecuarias, frutales,hortícolas, <br>
+                                                forestales y otros productos alimenticios para satisfacer las necesidades <br>
                                                 de la población de San Diego y sus alrededores. <br> <br>
 
-                                                {{-- Garantizamos el crecimiento sostenible de las producciones con alto valor <br>
-                                            agregado, reduciendo los costos de producción para un desarrollo <br>
-                                            económico, seguridad alimentaria y el mejoramiento del medio ambiente. <br> --}}
-                                                El sistema AgroSystem versión 1, fue creado con fines educativos durante
-                                                el <br>
-                                                curso de las clases: Análisis y Diseño de Sistemas y Programación e
-                                                <br>
-                                                Implementación de Sistemas, a finales del año 2021 e inicios del año 2022,
-                                                <br>
+                                                El sistema AgroSystem versión 1, fue creado con fines educativos durante el <br>
+                                                curso de las clases: Análisis y Diseño de Sistemas y Programación e <br>
+                                                Implementación de Sistemas, a finales del año 2021 e inicios del año 2022, <br>
                                                 bajo supervisión de la magister Gladys Melissa Nolasco. <br><br>
 
                                                 Este sistema fue elaborado por las estudiantes de UNAH-TEC DANLÍ: <br>
@@ -695,10 +684,12 @@
                 </div>
             </div>
 
+
+
         </div>
     </div>
 
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -728,18 +719,12 @@
     </div>
 
 
-
-
-
-
-
-
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <!-- Bootstrap Js CDN -->
-    <script src="../../js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
