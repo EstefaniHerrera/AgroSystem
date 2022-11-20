@@ -51,48 +51,46 @@
         </a>
     </div>
     <br>
-    <div class="table-responsive">
-        <table class="table table-bordered border-dark mt-3">
-            <thead class="table table-striped table-hover">
-                <tr class="info">
-                    <th>Fecha del pedido</th>
-                    <th>Proveedor</th>
-                    <th>Estado</th>
-                    <th>Cambiar estado </th>
-                    <th></th>
+    <table class="table table-bordered border-dark mt-3">
+        <thead class="table table-striped table-hover">
+            <tr class="info">
+                <th>Fecha del pedido</th>
+                <th>Proveedor</th>
+                <th>Estado</th>
+                <th>Cambiar estado </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($pedidos as $pedido)
+                <tr>
+                    <td>{{ date('d-m-Y', strtotime($pedido->FechaDelPedido)) }}</td>
+                    <td>{{ $pedido->proveedor->EmpresaProveedora }}</td>
+                    <td>{{ $pedido->EstadoDelPedidoDelProveedor }}</td>
+                    <td>
+                        <a class="btn btn-success" style="border-color:black; color:white;"
+                            onclick="cambiarEstadoP({{ $pedido->id }})">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            Realizado </a>
+                    </td>
+                    <td>
+                        <a class="btn" style="background-color:white; border-color:black; color:black"
+                            href="{{ Route('pedidosProveedor.show', ['id' => $pedido->id]) }}">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            Más detalles </a>
+                        <a class="btn" style="background-color:white; border-color:black; color:black"
+                            href="{{ route('pedidosProveedor.edit', ['id' => $pedido->id]) }}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            Editar</a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @forelse ($pedidos as $pedido)
-                    <tr>
-                        <td>{{ date('d-m-Y', strtotime($pedido->FechaDelPedido)) }}</td>
-                        <td>{{ $pedido->proveedor->EmpresaProveedora }}</td>
-                        <td>{{ $pedido->EstadoDelPedidoDelProveedor }}</td>
-                        <td>
-                            <a class="btn btn-success" style="border-color:black; color:white;"
-                                onclick="cambiarEstadoP({{ $pedido->id }})">
-                                <span class="glyphicon glyphicon-ok"></span>
-                                Realizado </a>
-                        </td>
-                        <td>
-                            <a class="btn" style="background-color:white; border-color:black; color:black"
-                                href="{{ Route('pedidosProveedor.show', ['id' => $pedido->id]) }}">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                Más detalles </a>
-                            <a class="btn" style="background-color:white; border-color:black; color:black"
-                                href="{{ route('pedidosProveedor.edit', ['id' => $pedido->id]) }}">
-                                <span class="glyphicon glyphicon-edit"></span>
-                                Editar</a>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td rowspan="4">No hay resultados</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
+            @empty
+                <tr>
+                    <td rowspan="4">No hay resultados</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
     {{ $pedidos->links() }}
 
 
@@ -100,7 +98,7 @@
 @push('alertas')
     <script>
         function cambiarEstadoP(id) {
-            var ruta = "/estadoP/" + id;
+            var ruta = "/estadoProveedor/" + id;
             Swal.fire({
                 title: '¿Está seguro que el pedido ya fue realizado?',
                 icon: 'warning',
