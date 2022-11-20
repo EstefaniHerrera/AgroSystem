@@ -169,10 +169,7 @@ class GastoController extends Controller
             'fechadesde' => $fechadesde, 'fechahasta' => $fechahasta,'n_e' => $nombre_empleado
         ]);
         return $pdf->stream();
-        //return $pdf->download('__compras.pdf');
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -238,8 +235,6 @@ class GastoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
-    
     //funcion para editar los datos
     public function edit($id){
         $personal = Personal::all();
