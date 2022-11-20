@@ -108,7 +108,7 @@
         @push('alertas')
             <script>
                 function cambiarEstado(id) {
-                    var ruta = "/estado/" + id;
+                    var ruta = "/estadoS/" + id;
                     Swal.fire({
                         title: '¿Está seguro que el servicio técnico ya fue realizado?',
                         icon: 'warning',
