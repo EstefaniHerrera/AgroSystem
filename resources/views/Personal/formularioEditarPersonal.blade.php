@@ -59,7 +59,7 @@
         <label for="">Correo electrónico:</label>
         <input type="email" name="CorreoElectrónico" pattern="^[a-zA-Z0-9.!#$%&+/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$" class="form-control {{ $errors->has('CorreoElectrónico') ? 'is-invalid' : '' }}"
                value="{{ old('CorreoElectrónico', $personal->CorreoElectrónico) }}" id="CorreoElectrónico" placeholder="hola@ejemplo.com" required
-               title="por favor ingrese un correo valido" maxlength="100">
+               title="por favor ingrese un correo valido" maxlength="40" minlength="5">
         <div class="input-group-append">
             <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -87,7 +87,7 @@
     <div class="form-group">
         <label for="FechaDeIngreso">Fecha ingreso:</label>
         <input required type="date" class="form-control " name="FechaDeIngreso" id="FechaDeIngreso"
-        value="{{old('FechaDeIngreso', $personal->FechaDeIngreso)}}"
+        value="{{old('FechaDeIngreso', $personal->FechaDeIngreso)}}" min="<?php echo date('Y-m-d',strtotime($fecha_actual."- 70 year"));?>"
         max="<?php echo date('Y-m-d',strtotime($fecha_actual));?>">
     </div>
 
