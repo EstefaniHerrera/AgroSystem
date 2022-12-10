@@ -55,10 +55,10 @@ class PersonalController extends Controller
             'IdentidadDelEmpleado'=>'required|unique:personals|max:13',
             'NombresDelEmpleado'=>'required||max:30',
             'ApellidosDelEmpleado'=>'required|max:40',
-            'CorreoElectrónico'=>'required|email|unique:personals|max:40|min:5', /* # 8 correccion del max y min */
+            'CorreoElectrónico'=>'required|email|unique:personals|max:40|min:5', /* # 8 se establecio el maxlength y el minlength */
             'Teléfono'=>'required|unique:personals',
             'FechaDeNacimiento'=>'required|date',
-            'FechaDeIngreso'=>'required|date',
+            'FechaDeIngreso'=>'required|date', # 9 Se establecio un limite en la fecha
             'Ciudad'=>'required|max:20',
             'Dirección'=>'required|max:150'
         ]);
@@ -110,7 +110,7 @@ class PersonalController extends Controller
             'CorreoElectrónico'=> [
                 'required',
                 'email',
-                'max:40', /* # 15 correccion del max y min */
+                'max:40', /* # 15 se establecio el maxlength y el minlength */
                 'min:5',
                 Rule::unique('personals')->ignore($personal->id),
             ],
@@ -120,7 +120,7 @@ class PersonalController extends Controller
                 Rule::unique('personals')->ignore($personal->id),
             ],
             'FechaDeNacimiento'=>'required|date',
-            'FechaDeIngreso'=>'required|date',
+            'FechaDeIngreso'=>'required|date', # 16 Se establecio un limite en la fecha
             'Ciudad'=>'required|max:20',
             'Dirección'=>'required|max:150'
         ]);
