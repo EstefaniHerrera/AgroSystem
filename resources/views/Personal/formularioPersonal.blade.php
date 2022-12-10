@@ -54,6 +54,7 @@
                 placeholder="Apellidos del empleado" pattern="[a-zA-ZñÑáéíóú ]+" maxlength="40" value="{{ old('ApellidosDelEmpleado') }}">
         </div>
 
+         {{-- # 8 correccion del max y min  --}}
         <div class="form-group">
             <label for="">Correo electrónico:</label>
             <input type="email" name="CorreoElectrónico"
