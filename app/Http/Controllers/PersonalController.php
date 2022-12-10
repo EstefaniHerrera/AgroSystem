@@ -58,7 +58,7 @@ class PersonalController extends Controller
             'CorreoElectrónico'=>'required|email|unique:personals|max:40|min:5',
             'Teléfono'=>'required|unique:personals',
             'FechaDeNacimiento'=>'required|date',
-            'FechaDeIngreso'=>'required|date|before:tomorrow|after:yesterday',
+            'FechaDeIngreso'=>'required|date',
             'Ciudad'=>'required|max:20',
             'Dirección'=>'required|max:150'
         ]);
@@ -120,7 +120,7 @@ class PersonalController extends Controller
                 Rule::unique('personals')->ignore($personal->id),
             ],
             'FechaDeNacimiento'=>'required|date',
-            'FechaDeIngreso'=>'required|date|before:tomorrow|after:yesterday',
+            'FechaDeIngreso'=>'required|date',
             'Ciudad'=>'required|max:20',
             'Dirección'=>'required|max:150'
         ]);
