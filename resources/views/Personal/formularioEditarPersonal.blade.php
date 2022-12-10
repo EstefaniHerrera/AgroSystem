@@ -40,7 +40,9 @@
     <div class="form-group">
         <label for="IdentidadDelEmpleado"> Identidad </label>
         <input type="tel" class="form-control" name="IdentidadDelEmpleado" id="IdentidadDelEmpleado" pattern="[0-1][0-8][0-2][0-9]{10}" required
-        placeholder="Identidad del personal sin guiones" value="{{old('IdentidadDelEmpleado', $personal->IdentidadDelEmpleado)}}" maxlength="13" title="La identidad debe comenzar con 0 o con 1. Debe ingresar 13 caracteres">
+        placeholder="Identidad del personal sin guiones" value="{{old('IdentidadDelEmpleado', $personal->IdentidadDelEmpleado)}}" maxlength="13" title="La identidad debe comenzar con 0 o con 1. Debe ingresar 13 caracteres"
+        {{-- # 13 Llamada a la funcion para que solo tome numeros  --}}
+        onkeypress="return valideKey(event);">
     </div>
 
     <div class="form-group">
@@ -54,8 +56,7 @@
         <input type="text" class="form-control" name="ApellidosDelEmpleado" id="ApellidosDelEmpleado" title="No ingrese números ni signos" required
         placeholder="Apellido del personal" pattern="[a-zA-ZñÑáéíóú ]+" value="{{old('ApellidosDelEmpleado', $personal->ApellidosDelEmpleado)}}" maxlength="40">
     </div>
-
-    {{-- # 15 correccion del max y min  --}}
+    {{-- # 15 se establecio el maxlength y el minlength --}}
     <div class="form-group">
         <label for="">Correo electrónico:</label>
         <input type="email" name="CorreoElectrónico" pattern="^[a-zA-Z0-9.!#$%&+/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$" class="form-control {{ $errors->has('CorreoElectrónico') ? 'is-invalid' : '' }}"
@@ -71,7 +72,9 @@
     <div class="form-group">
         <label for="Teléfono"> Teléfono </label>
         <input type="tel" class="form-control" name="Teléfono" id="Teléfono" pattern="([2-3, 8-9][0-9]{7})" required
-        placeholder="00000000" value="{{old('Teléfono', $personal->Teléfono)}}" maxlength="8" title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres">
+        placeholder="00000000" value="{{old('Teléfono', $personal->Teléfono)}}" maxlength="8" title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres"
+        {{-- #14 Llamada a la funcion para que solo tome numeros  --}}
+        onkeypress="return valideKey(event);">
     </div>
 
     <?php
@@ -84,7 +87,7 @@
          max="<?php echo date('Y-m-d',strtotime($fecha_actual."- 18 year"));?>">
     </div>
 
-{{-- # 16 fecha maxima y minima  --}}
+    {{-- # 16 Se establecio un limite en la fecha --}}
     <div class="form-group">
         <label for="FechaDeIngreso">Fecha ingreso:</label>
         <input required type="date" class="form-control " name="FechaDeIngreso" id="FechaDeIngreso"
@@ -118,6 +121,21 @@
 
     $('#Cargo').val({{$personal->cargo_id}});
 
+</script>
+
+{{-- #13, 14 Funcion para que solo tome numeros --}}
+<script type="text/javascript"> 
+    function valideKey(evt){    
+        // code is the decimal ASCII representation of the pressed key.
+            var code = (evt.which) ? evt.which : evt.keyCode;
+        if(code==8) { // backspace.
+            return true;
+        } else if(code>=48 && code<=57) { // is a number.
+            return true;
+        } else{ // other keys.
+            return false;
+        }
+    }
 </script>
 
 <script>
