@@ -39,7 +39,9 @@
             <label for="IdentidadDelEmpleado"> Identidad </label>
             <input type="tel" class="form-control" name="IdentidadDelEmpleado" id="IdentidadDelEmpleado"
                 placeholder="Identidad del empleado sin guiones" pattern="[0-1][0-8][0-2][0-9]{10}" required
-                value="{{ old('IdentidadDelEmpleado') }}" maxlength="13" title="La identidad debe comenzar con 0 o con 1. Debe ingresar 13 caracteres">
+                value="{{ old('IdentidadDelEmpleado') }}" maxlength="13" title="La identidad debe comenzar con 0 o con 1. Debe ingresar 13 caracteres"
+                {{-- # 6 Llamada a la funcion para que solo tome numeros  --}}
+                onkeypress="return valideKey(event);">
         </div>
 
         <div class="form-group">
@@ -53,8 +55,7 @@
             <input type="text" class="form-control" name="ApellidosDelEmpleado" id="ApellidosDelEmpleado" required title="No ingrese números ni signos"
                 placeholder="Apellidos del empleado" pattern="[a-zA-ZñÑáéíóú ]+" maxlength="40" value="{{ old('ApellidosDelEmpleado') }}">
         </div>
-
-         {{-- # 8 correccion del max y min  --}}
+        {{-- # 8 se establecio el maxlength y el minlength --}}
         <div class="form-group">
             <label for="">Correo electrónico:</label>
             <input type="email" name="CorreoElectrónico"
@@ -72,7 +73,9 @@
         <div class="form-group">
             <label for="Teléfono"> Teléfono </label>
             <input type="tel" class="form-control" name="Teléfono" id="Teléfono" placeholder="00000000"
-                pattern="([2-3, 8-9][0-9]{7})" required value="{{ old('Teléfono') }}" maxlength="8" title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres">
+                pattern="([2-3, 8-9][0-9]{7})" required value="{{ old('Teléfono') }}" maxlength="8" title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres"
+                 {{-- # 7 Llamada a la funcion para que solo tome numeros  --}}
+                onkeypress="return valideKey(event);">
         </div>
 
 
@@ -85,7 +88,7 @@
                 value="{{ old('FechaDeNacimiento') }}" min="<?php echo date('Y-m-d', strtotime($fecha_actual . '- 70 year')); ?>" max="<?php echo date('Y-m-d', strtotime($fecha_actual . '- 18 year')); ?>">
         </div>
 
-         {{-- # 9 fecha maxima y minima  --}}
+        {{-- # 9 Se establecio un limite en la fecha --}}
         <div class="form-group">
             <label for="FechaDeIngreso">Fecha ingreso:</label>
             <input require type="date" class="form-control " name="FechaDeIngreso" id="FechaDeIngreso"
@@ -118,6 +121,22 @@
 
 @section('js')
     @push('alertas')
+
+    {{-- #6, 7 Funcion para que solo tome numeros --}}
+    <script type="text/javascript"> 
+        function valideKey(evt){    
+            // code is the decimal ASCII representation of the pressed key.
+                var code = (evt.which) ? evt.which : evt.keyCode;
+            if(code==8) { // backspace.
+                return true;
+            } else if(code>=48 && code<=57) { // is a number.
+                return true;
+            } else{ // other keys.
+                return false;
+            }
+        }
+    </script>
+
         <script>
             function restaurar() {
                 $("#Dirección").val('');
