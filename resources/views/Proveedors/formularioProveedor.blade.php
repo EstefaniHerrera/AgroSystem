@@ -43,7 +43,7 @@
                 pattern="^[a-zA-Z0-9.!#$%&+/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$"
                 class="form-control {{ $errors->has('CorreoElectrónicoDeLaEmpresa') ? 'is-invalid' : '' }}"
                 value="{{ old('CorreoElectrónicoDeLaEmpresa') }}" id="CorreoElectrónicoDeLaEmpresa"
-                 {{-- # 18 se corrigio maxlength para que coincida con los establecido en el controlador --}}
+                 {{-- # 18 se corrigio el maxlength para que coincida con los establecido en el controlador --}}
                 placeholder="hola@ejemplo.com" maxlength="40" title="Por favor ingrese un correo válido">
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -57,6 +57,8 @@
             <input type="tel" class="form-control" name="TeléfonoDeLaEmpresa" id="TeléfonoDeLaEmpresa"
                 placeholder="00000000" pattern="([2-3, 8-9][0-9]{7})" required value="{{ old('TeléfonoDeLaEmpresa') }}" 
                 maxlength="8" title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres">
+                 {{-- # 19 Llamada a la funcion para que solo tome numeros  --}}
+                        onkeypress="return valideKey(event);">
         </div>
 
         <div class="form-group">
@@ -77,6 +79,8 @@
             <input type="tel" class="form-control" name="TeléfonoDelEncargado" id="TeléfonoDelEncargado"
                 placeholder="00000000" pattern="([2-3, 8-9][0-9]{7})" required value="{{ old('TeléfonoDelEncargado') }}" 
                 maxlength="8" title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres">
+                {{-- # 20 Llamada a la funcion para que solo tome numeros  --}}
+                onkeypress="return valideKey(event);">
         </div>
 
         <br>
@@ -90,6 +94,22 @@
 
 @section('js')
     @push('alertas')
+    
+        {{-- # 19, 20 Funcion para que solo tome numeros --}}
+        <script type="text/javascript"> 
+            function valideKey(evt){    
+                // code is the decimal ASCII representation of the pressed key.
+                    var code = (evt.which) ? evt.which : evt.keyCode;
+                if(code==8) { // backspace.
+                    return true;
+                } else if(code>=48 && code<=57) { // is a number.
+                    return true;
+                } else{ // other keys.
+                    return false;
+                }
+            }
+        </script>
+        
         <script>
             function restaurar() {
                 $("#EmpresaProveedora").val('');
