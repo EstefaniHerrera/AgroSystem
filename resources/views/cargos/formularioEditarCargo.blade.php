@@ -36,7 +36,7 @@
 
     <div class="form-group">
         <label for="DescripciónDelCargo"> Descripción </label>
-        <textarea required class="form-control" name="DescripciónDelCargo" maxlength="200" id="DescripciónDelCargo" cols="30" rows="10" 
+        <textarea required class="form-control" name="DescripciónDelCargo" maxlength="200" minlength="5" id="DescripciónDelCargo" cols="30" rows="10" 
         placeholder="Breve descripción de la función del puesto">{{old('DescripciónDelCargo', $cargo->DescripciónDelCargo)}}</textarea>
     </div>
 
