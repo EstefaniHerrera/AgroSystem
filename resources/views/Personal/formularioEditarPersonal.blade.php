@@ -55,7 +55,7 @@
         placeholder="Apellido del personal" pattern="[a-zA-ZñÑáéíóú ]+" value="{{old('ApellidosDelEmpleado', $personal->ApellidosDelEmpleado)}}" maxlength="40">
     </div>
 
-    {{-- # 8 correccion del max y min  --}}
+    {{-- # 15 correccion del max y min  --}}
     <div class="form-group">
         <label for="">Correo electrónico:</label>
         <input type="email" name="CorreoElectrónico" pattern="^[a-zA-Z0-9.!#$%&+/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$" class="form-control {{ $errors->has('CorreoElectrónico') ? 'is-invalid' : '' }}"
