@@ -110,7 +110,7 @@ class PersonalController extends Controller
             'CorreoElectrónico'=> [
                 'required',
                 'email',
-                'max:40', /* # 8 correccion del max y min */
+                'max:40', /* # 15 correccion del max y min */
                 'min:5',
                 Rule::unique('personals')->ignore($personal->id),
             ],
