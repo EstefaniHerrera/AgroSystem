@@ -34,7 +34,7 @@
         value="{{old('NombreDelCargo', $cargo->NombreDelCargo)}}" maxlength="40" required>
     </div>
 
-    {{-- # 3 correccion del max y min  --}}
+    {{-- # 4 Se establecio el maxlength y el minlength --}}
     <div class="form-group">
         <label for="DescripciónDelCargo"> Descripción </label>
         <textarea required class="form-control" name="DescripciónDelCargo" maxlength="200" minlength="5" id="DescripciónDelCargo" cols="30" rows="10" 
@@ -44,7 +44,9 @@
     <div class="form-group">
         <label for="Sueldo"> Sueldo </label>
         <input type="number" class="form-control" name="Sueldo" id="Sueldo" placeholder="0" min="1000" max="100000" required 
-        value="{{old('Sueldo', $cargo->Sueldo)}}" maxlength="8" title="Ingrese el sueldo sin decimales">
+        value="{{old('Sueldo', $cargo->Sueldo)}}" maxlength="8" title="Ingrese el sueldo sin decimales"
+        {{-- # 3 Llamada a la funcion para que solo tome numeros  --}}
+        onkeypress="return valideKey(event);">
     </div>
 
     <br>
@@ -55,6 +57,21 @@
 @endsection
 
 @push('alertas')
+
+{{-- # 3 Funcion para que solo tome numeros --}}
+<script type="text/javascript"> 
+    function valideKey(evt){    
+        // code is the decimal ASCII representation of the pressed key.
+            var code = (evt.which) ? evt.which : evt.keyCode;
+        if(code==8) { // backspace.
+            return true;
+        } else if(code>=48 && code<=57) { // is a number.
+            return true;
+        } else{ // other keys.
+            return false;
+        }
+    }
+</script>
 
 <script>
     function restaurar() {
