@@ -32,6 +32,7 @@
         maxlength="40" value="{{old('NombreDelCargo')}}" required>
     </div>
 
+    {{--  # 2 correccion del max y min  --}}
     <div class="form-group">
         <label for="DescripciónDelCargo"> Descripción </label>
         <textarea class="form-control" name="DescripciónDelCargo" id="DescripciónDelCargo" cols="30" rows="10" 
