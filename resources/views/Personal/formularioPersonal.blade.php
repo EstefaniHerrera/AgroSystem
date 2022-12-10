@@ -85,7 +85,7 @@
                 value="{{ old('FechaDeNacimiento') }}" min="<?php echo date('Y-m-d', strtotime($fecha_actual . '- 70 year')); ?>" max="<?php echo date('Y-m-d', strtotime($fecha_actual . '- 18 year')); ?>">
         </div>
 
-
+         {{-- # 9 fecha maxima y minima  --}}
         <div class="form-group">
             <label for="FechaDeIngreso">Fecha ingreso:</label>
             <input require type="date" class="form-control " name="FechaDeIngreso" id="FechaDeIngreso"
