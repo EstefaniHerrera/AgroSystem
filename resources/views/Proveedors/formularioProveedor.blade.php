@@ -43,7 +43,8 @@
                 pattern="^[a-zA-Z0-9.!#$%&+/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$"
                 class="form-control {{ $errors->has('CorreoElectrónicoDeLaEmpresa') ? 'is-invalid' : '' }}"
                 value="{{ old('CorreoElectrónicoDeLaEmpresa') }}" id="CorreoElectrónicoDeLaEmpresa"
-                placeholder="hola@ejemplo.com" maxlength="100" title="Por favor ingrese un correo válido">
+                 {{-- # 18 se corrigio maxlength para que coincida con los establecido en el controlador --}}
+                placeholder="hola@ejemplo.com" maxlength="40" title="Por favor ingrese un correo válido">
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
