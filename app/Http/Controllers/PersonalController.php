@@ -55,7 +55,7 @@ class PersonalController extends Controller
             'IdentidadDelEmpleado'=>'required|unique:personals|max:13',
             'NombresDelEmpleado'=>'required||max:30',
             'ApellidosDelEmpleado'=>'required|max:40',
-            'CorreoElectrónico'=>'required|email|unique:personals|max:40|min:5',
+            'CorreoElectrónico'=>'required|email|unique:personals|max:40|min:5', /* # 8 correccion del max y min */
             'Teléfono'=>'required|unique:personals',
             'FechaDeNacimiento'=>'required|date',
             'FechaDeIngreso'=>'required|date',
@@ -110,7 +110,7 @@ class PersonalController extends Controller
             'CorreoElectrónico'=> [
                 'required',
                 'email',
-                'max:40',
+                'max:40', /* # 8 correccion del max y min */
                 'min:5',
                 Rule::unique('personals')->ignore($personal->id),
             ],
