@@ -84,7 +84,7 @@
          max="<?php echo date('Y-m-d',strtotime($fecha_actual."- 18 year"));?>">
     </div>
 
-
+{{-- # 16 fecha maxima y minima  --}}
     <div class="form-group">
         <label for="FechaDeIngreso">Fecha ingreso:</label>
         <input required type="date" class="form-control " name="FechaDeIngreso" id="FechaDeIngreso"
