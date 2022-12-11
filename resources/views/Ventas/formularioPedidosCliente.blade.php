@@ -305,7 +305,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label style="width: 100%" for="">Cantidad</label>
-                                    <input style="width: 100%" type="number" name="Cantidad"
+                                    <!-- 58. Correccion de la cantidad de agregar detalles de pedidos de clientes  -->
+                                    <input style="width: 100%" type="text" name="Cantidad"
                                         class="form-control {{ $errors->has('Cantidad') ? 'is-invalid' : '' }}"
                                         value="{{ old('Cantidad') }}" id="Cantidad" required placeholder="0"
                                         title="Ingrese cantidad de la compra en números." maxlength="4" pattern="[0-9]+"
