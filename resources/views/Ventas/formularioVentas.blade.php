@@ -49,7 +49,6 @@
                 </div>
 
             </div>
-
             <div class="row" style="width: 100%">
                 <div class="col-sm-6">
                     <label for="Cliente"> Cliente </label>
@@ -57,7 +56,7 @@
                         <option style="display: none;" value="">Seleccione un cliente</option>
                         <option value=" ">Consumidor Final</option>
                         @foreach ($cliente as $c)
-                            <option value="{{ $c->id }}" @if (old('Cliente') == $c->id) @selected(true) @endif
+                            <option value="{{ $c->id }}" @if(old('Idcliente') == $c->id) @selected(true) @endif
                                 @if ($c->id == $client) @selected(true) @endif>
                                 {{ $c->IdentidadDelCliente }}-{{ $c->NombresDelCliente }}
                                 {{ $c->ApellidosDelCliente }}
@@ -80,7 +79,7 @@
             <br>
             <div class="row" style="width: 100%">
                 <div class="col-sm-12">
-                    <button data-toggle="modal" data-target="#agreagar_detalle" type="button" class="btn"
+                    <button data-toggle="modal" data-target="#agreagar_detalle" onclick="agregar_cliente()" type="button" class="btn"
                         style="background-color:rgb(65, 145, 126); border-color:black; color:white">
                         <span class="glyphicon glyphicon-plus-sign"></span>
                         Agregar detalles
@@ -299,7 +298,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <input type="text" name="Idcliente" id="Idcliente" value="{{ $client }}"
+                                <input type="text" name="Idcliente" id="Idcliente"
                                     hidden>
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -692,6 +691,12 @@
                         }
                     });
                 });
+
+                function agregar_cliente() {
+                    $('#Idcliente').val($('#Cliente').val());
+
+
+                }
 
                 function editar_detalle(IdProducto, categoria_id, IdPresentacion, Cantidad, Precio_venta, id) {
                     $('#e_IdCategoria').val(categoria_id);
