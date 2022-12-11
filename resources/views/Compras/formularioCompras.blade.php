@@ -69,8 +69,9 @@
                 <div class="form-group">
                     <label style="width: 100%" for="FechaCompra"> Fecha de la compra </label>
                     <input style="width: 100%" type="date" class="form-control" name="FechaCompra" id="FechaCompra"
-                        required maxlength="40" min="<?php echo date('Y-m-d', strtotime($fecha_actual . '- 1 month')); ?>" max="<?php echo date('Y-m-d', strtotime($fecha_actual)); ?>">
+                        required maxlength="40" min="<?php echo date('Y-m-d', strtotime($fecha_actual . '- 1 month')); ?>" max="<?php echo date('Y-m-d', strtotime($fecha_actual )); ?>">
                 </div>
+
             </div>
 
             <div class="col-sm-4">
@@ -79,7 +80,7 @@
                     <input style="width: 100%" type="date" name="FechaPago"
                         class="form-control {{ $errors->has('FechaPago') ? 'is-invalid' : '' }}"
                         value="{{ old('FechaPago') }}" id="FechaPago" title="Ingrese la fecha en la que hara el pago"
-                        min="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 1 day')); ?>">
+                        min="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 1 day')); ?>" max="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 30 day')); ?>">
                 </div>
             </div>
 
@@ -104,7 +105,7 @@
         </div>
         <br>
 
-        
+
             <div class="row" style="width: 100%">
                 <div class="col-sm-16">
                     <div class="table-responsive">
@@ -408,7 +409,8 @@
                                     <input style="width: 100%" type="date" name="fecha"
                                         class="form-control {{ $errors->has('fecha') ? 'is-invalid' : '' }}"
                                         value="{{ old('fecha', 0) }}" id="fecha"
-                                        title="Ingrese la fecha de vencimiento" min="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 1 day')); ?>">
+                                        title="Ingrese la fecha de vencimiento" min="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 1 day')); ?>"
+                                        
                                 </div>
                             </div>
                         </div>
