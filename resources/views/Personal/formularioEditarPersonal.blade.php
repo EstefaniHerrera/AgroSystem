@@ -56,12 +56,13 @@
         <input type="text" class="form-control" name="ApellidosDelEmpleado" id="ApellidosDelEmpleado" title="No ingrese números ni signos" required
         placeholder="Apellido del personal" pattern="[a-zA-ZñÑáéíóú ]+" value="{{old('ApellidosDelEmpleado', $personal->ApellidosDelEmpleado)}}" maxlength="40">
     </div>
-    {{-- # 15 se establecio el maxlength y el minlength --}}
+    
+    {{-- # 15 Se corrigio el maxlength para que coincida con lo establecido en el controlador --}}
     <div class="form-group">
         <label for="">Correo electrónico:</label>
         <input type="email" name="CorreoElectrónico" pattern="^[a-zA-Z0-9.!#$%&+/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$" class="form-control {{ $errors->has('CorreoElectrónico') ? 'is-invalid' : '' }}"
                value="{{ old('CorreoElectrónico', $personal->CorreoElectrónico) }}" id="CorreoElectrónico" placeholder="hola@ejemplo.com" required
-               title="por favor ingrese un correo valido" maxlength="40" minlength="5">
+               title="por favor ingrese un correo valido" maxlength="40">
         <div class="input-group-append">
             <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -80,6 +81,7 @@
     <?php
         $fecha_actual = date("d-m-Y");
     ?>
+    
     <div class="form-group">
         <label for="FechaDeNacimiento">Fecha nacimiento:</label>
         <input required type="date" class="form-control" name="FechaDeNacimiento" id="FechaDeNacimiento"
