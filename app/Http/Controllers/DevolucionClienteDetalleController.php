@@ -38,6 +38,7 @@ class DevolucionClienteDetalleController extends Controller
         $detalles->IdVenta = null;
         $detalles->save();
 
+        /* #77 Corrección para que no se borre la descripción */
         $InvoiceInformation = [
             'descripcion' =>  $request->input('descripcion'),/* 
             'Proveedor' =>  $request->input('Proveedor'),
