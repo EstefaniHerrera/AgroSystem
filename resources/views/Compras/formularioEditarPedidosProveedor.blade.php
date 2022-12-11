@@ -32,7 +32,7 @@
                         style="width: 100%">
                         <option style="display: none;" value="">Seleccione un proveedor</option>
                         @foreach ($proveedor as $p)
-                            <option value="{{ $p->id }}" @if (old('Proveedor') == $p->id || old('Proveedor') == $pedido->EmpresaProveedora) @selected(true) @endif>
+                            <option value="{{ $p->id }}" @if(old('Proveedor') == $p->id || $pedido->proveedor_id == $p->id) @selected(true) @endif>
                                 {{ $p->EmpresaProveedora }}
                             </option>
                         @endforeach
