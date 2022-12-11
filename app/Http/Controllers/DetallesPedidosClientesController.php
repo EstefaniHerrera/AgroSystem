@@ -43,7 +43,7 @@ class DetallesPedidosClientesController extends Controller
             $detalle = DetallesPedidosClientes::where('IdProducto', '=', $request->IdProducto)
                                 ->where('IdPresentacion', '=', $request->IdPresentacion)
                                 ->where('IdVenta', '=', 0)->firstOrFail();
-                        
+
             $detalle->IdVenta = 0;
             $detalle->IdProducto = $request->input('IdProducto');
             $detalle->IdPresentacion = $request->input('IdPresentacion');
@@ -59,7 +59,9 @@ class DetallesPedidosClientesController extends Controller
         }
 
 
-        return redirect()->route('pedidosCliente.crear');
+
+
+        return redirect()->route('pedidosCliente.crear',['idCliente' => $request->input('Idcliente')]);
     }
 
     public function destroy($id)
@@ -69,18 +71,18 @@ class DetallesPedidosClientesController extends Controller
 
         $detalles->delete();
 
-        return redirect()->route('pedidosCliente.crear');
+        return redirect()->route('pedidosCliente.crear',['idCliente' => 0]);
     }
 
     public function agregar_detalle_edit(Request $request)
-    { 
+    {
         $max=0;
         $lim = $request->IdProducto;
         $limite = DB::table('inventarios')->where('IdProducto', '=', $lim)->get();
         foreach($limite as $l){
             $max = $l->Existencia;
         }
-        
+
             $rules = [
                 'IdCategoria' => 'required|exists:categorias,id',
                 'IdProducto' => 'required|exists:productos,id',
@@ -107,7 +109,7 @@ class DetallesPedidosClientesController extends Controller
                                 ->where('IdPresentacion', '=', $request->IdPresentacion)
                                 ->where('id', '!=', $request->input('IdDetalle'))
                                 ->where('IdVenta', '=', 0)->firstOrFail();
-                        
+
             $detalle->IdVenta = 0;
             $detalle->IdProducto = $request->input('IdProducto');
             $detalle->IdPresentacion = $request->input('IdPresentacion');
@@ -127,7 +129,7 @@ class DetallesPedidosClientesController extends Controller
             $detalle->save();
         }
 
-        return redirect()->route('pedidosCliente.crear');
+        return redirect()->route('pedidosCliente.crear',['idCliente' => $request->input('e_Idcliente')]);
     }
 
     public function edit_agregar_detalle($id, Request $request)

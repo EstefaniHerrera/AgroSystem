@@ -80,6 +80,7 @@
             <br>
             <div class="row" style="width: 100%">
                 <div class="col-sm-12">
+                     <!-- 59 y 60. Correccion de mantener cliente al agregar y editar detalles -->
                     <button data-toggle="modal" data-target="#agreagar_detalle" onclick="agregar_cliente()" type="button" class="btn"
                         style="background-color:rgb(65, 145, 126); border-color:black; color:white">
                         <span class="glyphicon glyphicon-plus-sign"></span>
@@ -518,7 +519,7 @@
 
                                         <input type="text" name="IdDetalle" id="e_IdDetalle" hidden>
                                         <input type="text" name="e_Idcliente" id="e_Idcliente"
-                                            value="{{ $client }}" hidden>
+                                             hidden>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -699,7 +700,7 @@
                 function agregar_cliente() {
                     $('#Idcliente').val($('#Cliente').val());
                     $('#e_Idcliente').val($('#Cliente').val());
-                    
+
                 }
 
                 function editar_detalle(IdProducto, categoria_id, IdPresentacion, Cantidad, Precio_venta, id) {

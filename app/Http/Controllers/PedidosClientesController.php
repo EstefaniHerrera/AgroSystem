@@ -40,7 +40,7 @@ class PedidosClientesController extends Controller
         return view('Ventas.detallePedidosCliente')->with('pedidos', $pedidos)->with('detalles', $details);
     }
 
-    public function create()
+    public function create($idCliente = 0)
     {
         // ////////////////////////////////////////////////////
         // //////////////////////////////////////////////////////////
@@ -63,7 +63,9 @@ class PedidosClientesController extends Controller
             ->with('categoria', $categoria)
             ->with('inventarios', $inventarios)
             ->with('detalles', $detalles)
-            ->with('total_cantidad', $total_cantidad);
+            ->with('total_cantidad', $total_cantidad)
+            ->with('clien', $idCliente);
+
     }
 
 
@@ -135,9 +137,9 @@ class PedidosClientesController extends Controller
 
             $inve =  Inventario::where('IdProducto', '=', $value->IdProducto)
             ->where('IdPresentacion', '=', $value->IdPresentacion)->firstOrFail();
-    
+
             $inve->Existencia = $inve->Existencia - $value->Cantidad;
-    
+
             $inve->save();
         }
 
@@ -167,7 +169,7 @@ class PedidosClientesController extends Controller
         return redirect()->route('pedidosCliente.index');
     }
 
-    
+
  //Metodos para editar detalls de actualizar venta
 
 

@@ -30,12 +30,13 @@
         <div class="row" style="width: 87%">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="Cliente"> Cliente </label>
+                    <label for="Cliente"> Cliente</label>
                     <select name="Cliente" id="Cliente" class="select222" data-live-search="true" required
                         style="width: 100%">
                         <option style="display: none;" value="">Seleccione un cliente</option>
                         @foreach ($cliente as $c)
-                            <option value="{{ $c->id }}" @if (old('Cliente') == $c->id) @selected(true) @endif>
+
+                            <option value="{{ $c->id }}" @if ($clien == $c->id) @selected(true) @endif>
                                 {{ $c->IdentidadDelCliente }}-{{ $c->NombresDelCliente }}
                                 {{ $c->ApellidosDelCliente }}
                             </option>
@@ -56,7 +57,8 @@
 
         <div class="row" style="width: 100%">
             <div class="col-sm-12">
-                <button data-toggle="modal" data-target="#agreagar_detalle" type="button" class="btn"
+                <!-- 59 y 60. Correccion de mantener cliente al agregar y editar detalles -->
+                <button data-toggle="modal" data-target="#agreagar_detalle" onclick="agregar_cliente()" type="button" class="btn"
                     style="background-color:rgb(65, 145, 126); border-color:black; color:white">
                     <span class="glyphicon glyphicon-plus-sign"></span>
                     Agregar detalles</button>
@@ -177,6 +179,8 @@
                                     </select>
                                 </div>
                             </div>
+                            <input type="text" name="Idcliente" id="Idcliente"
+                                    hidden>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Producto</label>
@@ -356,6 +360,8 @@
                                     </select>
 
                                     <input type="text" name="IdDetalle" id="e_IdDetalle" hidden>
+                                    <input type="text" name="e_Idcliente" id="e_Idcliente"
+                                             hidden>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -504,6 +510,15 @@
                 });
             });
 
+            // 59 y 60. Correccion de mantener cliente al agregar y editar detalles
+            function agregar_cliente() {
+
+                    $('#Idcliente').val($('#Cliente').val());
+                    $('#e_Idcliente').val($('#Cliente').val());
+
+            }
+
+
             function editar_detalle(IdProducto, categoria_id, IdPresentacion, Cantidad, id) {
                 $('#e_IdCategoria').val(categoria_id);
                 e_cambio();
@@ -512,7 +527,8 @@
                 e_precio();
                 $('#e_Cantidad').val(Cantidad);
                 $('#e_IdDetalle').val(id);
-
+// 59 y 60. Correccion de mantener cliente al agregar y editar detalles
+                agregar_cliente();
             }
 
             function confirmar() {

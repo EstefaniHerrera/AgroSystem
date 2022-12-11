@@ -45,7 +45,7 @@
 
     <div class="d-grid gap-2 d-md-block ">
         <a class="btn" style="background-color:rgb(65, 145, 126); border-color:black; color:white"
-            href="{{ route('pedidosCliente.crear') }}"><span class="glyphicon glyphicon-plus"></span> Agregar pedido </a>
+            href="{{ route('pedidosCliente.crear',['idCliente' => 0]) }}"><span class="glyphicon glyphicon-plus"></span> Agregar pedido </a>
     </div>
     <br>
     <div class="table-responsive">

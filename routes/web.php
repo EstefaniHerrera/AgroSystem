@@ -343,7 +343,8 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
     Route::get('/pedidosClientes/detalle/{id}', [PedidosClientesController::class, 'show'])
     ->name('pedidosCliente.show');
 
-    Route::get('/pedidosClientes/crear', [PedidosClientesController::class, 'create'])
+    // 59 y 60. Correccion de mantener cliente al agregar y editar detalles
+    Route::get('/pedidosClientes/crear/{idCliente?}', [PedidosClientesController::class, 'create'])
     ->name('pedidosCliente.crear');
 
     Route::post('/pedidos/crear', [PedidosClientesController::class, 'store'])
@@ -509,7 +510,7 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
     ->name('pedidosProveedor.limpiar');
 
     Route::get('/estadoProveedor/{id}', [PedidosProveedorController::class, 'updateStatus'])
-    ->name('status.update')->where('id', '[0-9]+'); 
+    ->name('status.update')->where('id', '[0-9]+');
 
     Route::get('/destroyPro/{id}', [PedidosProveedorController::class, 'eliminar'])
     ->name('status.destroy')->where('id', '[0-9]+');
@@ -653,8 +654,8 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
 
     Route::get('/destroyCatalogo/{id}', [CatalogoController::class, 'eliminar'])
     ->name('status.destroy')->where('id', '[0-9]+');
-    
-    
+
+
     /********************************* USUARIOS *********************************/
 
     Route::get('/usuarios', [UserController::class, 'index'])
@@ -662,7 +663,7 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
 
     Route::get('/usuarios/buscar', [UserController::class, 'index2'])
     ->name('usuarios.index2');
-    
+
     Route::get('/usuarios/crear', [UserController::class, 'create'])
     ->name('usuarios.crear');
 
@@ -674,8 +675,8 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
 
     Route::post('usuarios/update_contrasena2/{user}', [ResetPasswordController::class, 'update_contrasena2'])
     ->name('usuarios.update_contrasena2');
-    
+
     Route::get('/destroyUsuario/{id}', [UserController::class, 'eliminar'])
     ->name('usuarios.destroy')->where('id', '[0-9]+');
-   
+
  });
