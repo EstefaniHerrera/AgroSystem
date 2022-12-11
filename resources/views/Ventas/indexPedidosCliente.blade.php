@@ -44,6 +44,10 @@
     <br><br>
 
     <div class="d-grid gap-2 d-md-block ">
+        <!-- 61. Botón regresar lista pedidos de clientes-->
+        <a class="btn" style="background-color:rgb(65, 145, 126); border-color:black; color:white"
+            href="/principal">
+            Regresar </a>
         <a class="btn" style="background-color:rgb(65, 145, 126); border-color:black; color:white"
             href="{{ route('pedidosCliente.crear',['idCliente' => 0]) }}"><span class="glyphicon glyphicon-plus"></span> Agregar pedido </a>
     </div>
