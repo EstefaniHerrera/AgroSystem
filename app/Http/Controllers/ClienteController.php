@@ -47,7 +47,7 @@ class ClienteController extends Controller
             'NombresDelCliente'=>'required||max:30',
             'ApellidosDelCliente'=>'required|max:40',
             'Telefono'=>'nullable|max:8|unique:clientes',
-            'LugarDeProcedencia'=>'required|max:120'
+            'LugarDeProcedencia'=>'required|max:70|min:10'
         ], [
             'IdentidadDelCliente.require'=>'El numero de identidad debe comenzar con 0 o con 1'
         ]);
@@ -81,7 +81,7 @@ class ClienteController extends Controller
             'NombresDelCliente'=>'required||max:30',
             'ApellidosDelCliente'=>'required|max:40',
             'Telefono'=>'nullable|max:8|unique:clientes',
-            'LugarDeProcedencia'=>'required|max:120'
+            'LugarDeProcedencia'=>'required|max:70|min:10'
         ]);
 
         $nuevoCliente = new Cliente();
