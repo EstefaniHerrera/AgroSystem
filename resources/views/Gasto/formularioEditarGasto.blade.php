@@ -38,7 +38,8 @@
 
     <div class="form-group">
         <label for="descripcion"> Descripción </label>
-        <textarea name="descripcion" id="descripcion" placeholder="Descripción del gasto" class="form-control" maxlength="150" minlength="5" required cols="30" rows="6">{{old('descripcion', $gasto->descripcion)}}</textarea>
+        <textarea name="descripcion" id="descripcion" placeholder="Descripción del gasto" class="form-control" 
+        {{--#73 Corrección del maxlength de 200 a 150--}} maxlength="150" minlength="5" required cols="30" rows="6">{{old('descripcion', $gasto->descripcion)}}</textarea>
     </div>
 
     <div class="form-group">
@@ -65,7 +66,9 @@
 
     <div class="form-group">
         <label for="total"> Total </label>
-        <input type="number" class="form-control" name="total" id="total" placeholder="Total del gasto" value="{{old('total', $gasto->total)}}" required step="any" min="1" max="50000" minlength="1" maxlength="7" oninput="maxlengthNumber(this);">
+        <input type="number" class="form-control" name="total" id="total" placeholder="Total del gasto" value="{{old('total', $gasto->total)}}" required step="any" min="1" max="50000" minlength="1" maxlength="7" 
+        {{--#72 Corrección colocación de maxlength--}}
+        oninput="maxlengthNumber(this);">
     </div>
 
 
@@ -79,6 +82,7 @@
 @endsection
 @push('alertas')
 <script>
+    // #72 Corrección colocación de maxlength
     function maxlengthNumber(obj){
         if(obj.value.length > obj.maxLength){
             obj.value = obj.value.slice(0, obj.maxLength);
