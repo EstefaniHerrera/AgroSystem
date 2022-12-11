@@ -49,11 +49,15 @@
         </select>
     </div>
 
-        <div class="form-group">
-            <label for="Teléfono"> Teléfono del cliente</label>
-            <input type="tel" class="form-control" name="TeléfonoCliente" id="TeléfonoCliente" pattern="([2-3, 8-9][0-9]{7})" required
-                   placeholder="00000000" value="{{old('TeléfonoCliente', $servicio->TeléfonoCliente)}}" maxlength="8" title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres">
-        </div>
+    <div class="form-group">
+        <label for="Teléfono"> Teléfono del cliente</label>
+        <input type="tel" class="form-control" name="TeléfonoCliente" id="TeléfonoCliente"
+            pattern="([2-3, 8-9][0-9]{7})" required placeholder="00000000"
+            value="{{ old('TeléfonoCliente', $servicio->TeléfonoCliente) }}" maxlength="8"
+            title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres"
+            {{-- Llamada a la funcion para que solo tome numeros  --}}
+            onkeypress="return valideKey(event);">
+    </div>
 
     <?php $fecha_actual = date('d-m-Y'); ?>
 
@@ -87,6 +91,20 @@
 
 
 @push('alertas')
+    {{-- Funcion para que solo tome numeros --}}
+    <script type="text/javascript">
+        function valideKey(evt) {
+            // code is the decimal ASCII representation of the pressed key.
+            var code = (evt.which) ? evt.which : evt.keyCode;
+            if (code == 8) { // backspace.
+                return true;
+            } else if (code >= 48 && code <= 57) { // is a number.
+                return true;
+            } else { // other keys.
+                return false;
+            }
+        }
+    </script>
     <script>
         $('#tecnico').val({{$servicio->cargo_id}});
     </script>
