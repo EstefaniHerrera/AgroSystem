@@ -56,6 +56,7 @@
                         <option style="display: none;" value="">Seleccione un cliente</option>
                         <option value=" ">Consumidor Final</option>
                         @foreach ($cliente as $c)
+                            <!--Correccion #49. Si se selecciona el cliente y de ahí se agrega el detalle se deselecciona el cliente -->
                             <option value="{{ $c->id }}" @if(old('Idcliente') == $c->id) @selected(true) @endif
                                 @if ($c->id == $client) @selected(true) @endif>
                                 {{ $c->IdentidadDelCliente }}-{{ $c->NombresDelCliente }}
@@ -236,8 +237,9 @@
                                 </script>
                                 <div class="col-sm-6">
                                     <div class="form-group">
+                                        <!-- 50. Correccion del rango final de la factura  -->
                                         <label for="recipient-name" class="col-form-label">Fin del rango</label>
-                                        <input style="width: 100%" type="number" name="Fin" id="Fin"
+                                        <input style="width: 100%" type="text" name="Fin" id="Fin"
                                             class="form-control" placeholder="Número de factura sin guiones"
                                             pattern="[0-9]{16}" required value="{{ old('Fin') }}" maxlength="16">
                                     </div>
@@ -692,6 +694,7 @@
                     });
                 });
 
+                // Carga del Id de clientes al modal de agregar
                 function agregar_cliente() {
                     $('#Idcliente').val($('#Cliente').val());
 
