@@ -55,14 +55,15 @@
             <input type="text" class="form-control" name="ApellidosDelEmpleado" id="ApellidosDelEmpleado" required title="No ingrese números ni signos"
                 placeholder="Apellidos del empleado" pattern="[a-zA-ZñÑáéíóú ]+" maxlength="40" value="{{ old('ApellidosDelEmpleado') }}">
         </div>
-        {{-- # 8 se establecio el maxlength y el minlength --}}
+        
+        {{-- # 8 Se corrigio el maxlength para que coincida con lo establecido en el controlador --}}
         <div class="form-group">
             <label for="">Correo electrónico:</label>
             <input type="email" name="CorreoElectrónico"
                 pattern="^[a-zA-Z0-9.!#$%&+/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$"
                 class="form-control {{ $errors->has('CorreoElectrónico') ? 'is-invalid' : '' }}"
                 value="{{ old('CorreoElectrónico') }}" id="CorreoElectrónico" placeholder="hola@ejemplo.com" required
-                title="por favor ingrese un correo valido" maxlength="40" minlength="5">
+                title="por favor ingrese un correo valido" maxlength="40">
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
@@ -78,10 +79,10 @@
                 onkeypress="return valideKey(event);">
         </div>
 
-
         <?php
         $fecha_actual = date('d-m-Y');
         ?>
+        
         <div class="form-group">
             <label for="FechaDeNacimiento">Fecha nacimiento:</label>
             <input require type="date" class="form-control" name="FechaDeNacimiento" id="FechaDeNacimiento"
@@ -112,8 +113,6 @@
         <input type="submit" class="btn btn-primary" value="Guardar">
         <input type="button" class="btn btn-danger" value="Limpiar" onclick="restaurar()">
         <a class="btn btn-info" href="{{ route('personal.index') }}">Cerrar</a>
-
-        {{--  --}}
 
     </form>
 
