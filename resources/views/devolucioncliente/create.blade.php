@@ -21,6 +21,12 @@
         </div>
     @endif
 
+    @if(session()->has('console'))
+    {{-- <div class="alert alert-success">
+            {{session('console')}}
+        </div> --}}
+    @endif
+
         {{-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
 
         <form id="form_guardar" name="form_guardar" method="POST" action="{{ route('devolucioncliente.guardar') }}"
@@ -223,7 +229,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <form action="{{ route('detalle_devolucioncliente.crear', ['IdDevolucion' => $clientepedido]) }}"
-                        method="POST">
+                        method="POST" id="form_agreagar_detalle" onsubmit="confirmarDetalle()">
                         @csrf
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Agregar detalles</h5>
@@ -415,6 +421,13 @@
                     });
                 });
 
+                var sites = {!! json_encode(session('console')) !!};
+                var newJson = JSON.parse(sites)
+                console.log(newJson)
+                if(sites != null && sites != undefined){
+                    $('#descripcion').val(newJson.descripcion);
+                }
+
                 function editar_detalle(IdProducto, categoria_id, IdPresentacion, Cantidad, Precio_venta, id) {
                     $('#e_IdCategoria').val(categoria_id);
                     e_cambio();
@@ -452,6 +465,35 @@
 
 
                 }
+
+                function confirmarDetalle() {
+                var formul = document.getElementById("form_agreagar_detalle");
+               
+                $("<input type='text'  />")
+                    .attr("id", "descripcion")
+                    .attr("name", "descripcion")
+                    .attr("value", $("#descripcion").val())
+                    .appendTo("#form_agreagar_detalle");
+
+                Swal.fire({
+                    title: '¿Está seguro que desea guardar los datos de este detalle?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        formul.submit();
+                    }
+
+                })
+
+                event.preventDefault()
+
+
+            }
 
                 function limpiarVenta(cliente) {
                     var n = "/devolucioncliente/limpiar/" + cliente;
