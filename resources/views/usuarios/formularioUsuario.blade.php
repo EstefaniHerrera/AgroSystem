@@ -55,8 +55,11 @@
                 <label for="username">Nombre de usuario:</label>
                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"
                     name="username" value="{{ old('username') }}" autocomplete="username"
-                    onkeypress="return fSoloLetras(event);" style="text-transform: lowercase" maxlength="20" minlength="3"
-                    required placeholder="Ingrese un nombre corto para usar como usuario">
+                    onkeypress="return fSoloLetras(event);" style="text-transform: lowercase" required 
+                    {{--#80 Corrección para que concuerde con el mensaje del controlador--}}
+                    maxlength="20" minlength="3"                    
+                    {{--#79 Corrección colocación de placeholder--}}
+                    placeholder="Ingrese un nombre corto para usar como usuario">
             </div>
 
         </div>
