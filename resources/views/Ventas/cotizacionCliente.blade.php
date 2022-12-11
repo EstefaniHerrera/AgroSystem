@@ -27,12 +27,12 @@
         <div class="row" style="width: 100%">
             <div class="col-sm-12">
 
-                <div class="d-grid gap-2 d-md-block ">
-                    <!-- 56. Botón regresar Cotizaciones de productos-->
-                    <a class="btn" style="background-color:rgb(65, 145, 126); border-color:black; color:white"
+
+                <!-- 56. Botón regresar Cotizaciones de productos-->
+                <a class="btn" style="background-color:rgb(65, 145, 126); border-color:black; color:white"
                         href="/principal">
                         Regresar </a>
-                </div>
+             
             
                 <button data-toggle="modal" data-target="#agreagar_detalle" type="button" class="btn"
                     style="background-color:rgb(65, 145, 126); border-color:black; color:white">
@@ -334,7 +334,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label style="width: 100%" for="">Cantidad</label>
-                                    <input style="width: 100%" type="number" name="Cantidad"
+                                    <!-- 57. Correccion de la cantidad de agregar detalles de cotizaciones de los clientes  -->
+                                    <input style="width: 100%" type="text" name="Cantidad"
                                         class="form-control {{ $errors->has('Cantidad') ? 'is-invalid' : '' }}"
                                         value="{{ old('Cantidad') }}" id="Cantidad" required placeholder="0"
                                         title="Ingrese cantidad de la compra en números." maxlength="4" pattern="[0-9]+"
