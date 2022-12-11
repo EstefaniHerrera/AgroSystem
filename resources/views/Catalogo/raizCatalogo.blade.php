@@ -61,11 +61,6 @@
     </div>
 @endsection
 @section('contenido')
-@if (session('mensaje'))
-        <div class="alert alert-success">
-            {{ session('mensaje') }}
-        </div>
-    @endif
 
     <br><br>
     <h1 class=""> Listado de catálogos </h1>
