@@ -36,7 +36,7 @@ class CargoController extends Controller
         //VALIDAR
         $request->validate([
             'NombreDelCargo'=>'required|unique:cargos|string|max:40',
-            'DescripciónDelCargo'=>'required|string|max:110|min:5', 
+            'DescripciónDelCargo'=>'required|string|max:150|min:5', 
             'Sueldo'=>'required|numeric|min:1000.00|max:30000.00'
         ]);
 
