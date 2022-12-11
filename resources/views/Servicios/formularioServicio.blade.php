@@ -54,6 +54,7 @@
             <input type="tel" class="form-control" name="Teléfono" id="Teléfono" placeholder="00000000"
                 pattern="([2-3, 8-9][0-9]{7})" required value="{{ old('Teléfono') }}" maxlength="8"
                 title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres" 
+                {{--#65 Corrección para que no se ingresen caracteres no numéricos--}}
                 {{-- Llamada a la funcion para que solo tome numeros  --}}
                 onkeypress="return valideKey(event);">
         </div>
@@ -94,6 +95,7 @@
 
 @section('js')
     @push('alertas')
+    {{--#65 Corrección para que no se ingresen caracteres no numéricos--}}
         {{-- Funcion para que solo tome numeros --}}
         <script type="text/javascript">
             function valideKey(evt) {
