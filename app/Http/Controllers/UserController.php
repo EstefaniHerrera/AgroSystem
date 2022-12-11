@@ -63,7 +63,7 @@ class UserController extends Controller
         ], [
             'username.required' => '¡Debes ingresar tu nombre de usuario!',
             'username.string' => '¡Debes ingresar tu nombre de usuario, verifica la información!',
-            'username.max' => '¡Has excedido el limite máximo de 70 letras!',
+            'username.max' => '¡Has excedido el limite máximo de 20 letras en el nombre de usuario!',
             'username.unique' => '¡Debes ingresar un nombre de usuario diferente!',
 
             'password.required' => 'Debes ingresar una contraseña',
