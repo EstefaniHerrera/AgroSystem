@@ -70,12 +70,16 @@
                         <div class="col-sm-2 my-1">
                             <label for="id">Fecha desde</label>
                             <input style="width: 100%" type="date" class="form-control" name="FechaDesde" id="Fechadesde"
-                                maxlength="40" value="{{ $fechadesde }}" max="<?php echo date('Y-m-d', strtotime($fecha_actual)); ?>" min="<?php echo date('Y-m-d', strtotime('2022-01-01')); ?>">
+                                maxlength="40" value="{{ $fechadesde }}" max="<?php echo date('Y-m-d', strtotime($fecha_actual)); ?>" 
+                                {{--#78 Corrección colocación de minimo--}}
+                                min="<?php echo date('Y-m-d', strtotime('2022-01-01')); ?>">
                         </div>
                         <div class="col-sm-2 my-1">
                             <label for="id">Fecha hasta</label>
                             <input style="width: 100%" type="date" class="form-control" name="FechaHasta" id="Fechahasta"
-                                maxlength="40" value="{{ $fechahasta }}" max="<?php echo date('Y-m-d', strtotime($fecha_actual)); ?>" min="<?php echo date('Y-m-d', strtotime('2022-01-01')); ?>">
+                                maxlength="40" value="{{ $fechahasta }}" max="<?php echo date('Y-m-d', strtotime($fecha_actual)); ?>" 
+                                {{--#78 Corrección colocación de minimo--}}
+                                min="<?php echo date('Y-m-d', strtotime('2022-01-01')); ?>">
                         </div>
 
                     </div>
