@@ -698,8 +698,8 @@
                 // Carga del Id de clientes al modal de agregar
                 function agregar_cliente() {
                     $('#Idcliente').val($('#Cliente').val());
-
-
+                    $('#e_Idcliente').val($('#Cliente').val());
+                    
                 }
 
                 function editar_detalle(IdProducto, categoria_id, IdPresentacion, Cantidad, Precio_venta, id) {
@@ -712,6 +712,9 @@
                     // $('#e_Precio_venta').val(Precio_venta);
                     $('#e_Cantidad').val(Cantidad);
                     $('#e_IdDetalle').val(id);
+
+                    // 51. Correccion de Error al modificar detalles de cliente
+                    agregar_cliente();
 
                 }
 
