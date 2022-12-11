@@ -34,10 +34,10 @@
         value="{{old('NombreDelCargo', $cargo->NombreDelCargo)}}" maxlength="40" required>
     </div>
 
-    {{-- # 4 Se establecio el maxlength y el minlength --}}
+    {{-- # 4 Se corrigio el maxlength para que coincida con lo establecido en el controlador --}}
     <div class="form-group">
         <label for="DescripciónDelCargo"> Descripción </label>
-        <textarea required class="form-control" name="DescripciónDelCargo" maxlength="200" minlength="5" id="DescripciónDelCargo" cols="30" rows="10" 
+        <textarea required class="form-control" name="DescripciónDelCargo" maxlength="150" minlength="5" id="DescripciónDelCargo" cols="30" rows="10" 
         placeholder="Breve descripción de la función del puesto">{{old('DescripciónDelCargo', $cargo->DescripciónDelCargo)}}</textarea>
     </div>
 
