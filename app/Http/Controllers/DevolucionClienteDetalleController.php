@@ -7,6 +7,9 @@ use App\Models\DetalleVenta;
 use App\Models\DevolucionClienteDetalle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use PhpParser\Node\Stmt\Return_;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class DevolucionClienteDetalleController extends Controller
 {
@@ -35,6 +38,13 @@ class DevolucionClienteDetalleController extends Controller
         $detalles->IdVenta = null;
         $detalles->save();
 
-        return redirect()->route('devolucioncliente.crear', ['clientepedido' => $clientepedido]);
+        $InvoiceInformation = [
+            'descripcion' =>  $request->input('descripcion'),/* 
+            'Proveedor' =>  $request->input('Proveedor'),
+            'FechaCompra' =>  $request->input('FechaCompra'),
+            'FechaPago' =>  $request->input('FechaPago'),
+            'PagoCompra' =>  $request->input('PagoCompra'), */
+        ];
+        return redirect()->back()->with('console',json_encode($InvoiceInformation));
     }
 }
