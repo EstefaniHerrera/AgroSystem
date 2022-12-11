@@ -31,11 +31,12 @@
         <input type="text" class="form-control" name="NombreDelCargo" id="NombreDelCargo" placeholder="Nombre del cargo" 
         maxlength="40" value="{{old('NombreDelCargo')}}" required>
     </div>
-    {{-- # 2 Se establecio el maxlength y el minlength --}}
+    
+    {{-- # 2 Se corrigio el maxlength para que coincida con lo establecido en el controlador --}}
     <div class="form-group">
         <label for="DescripciónDelCargo"> Descripción </label>
         <textarea class="form-control" name="DescripciónDelCargo" id="DescripciónDelCargo" cols="30" rows="10" 
-        placeholder="Breve descripción de la función del puesto" maxlength="200" minlength="5" required>{{old('DescripciónDelCargo')}}</textarea>
+        placeholder="Breve descripción de la función del puesto" maxlength="110" minlength="5" required>{{old('DescripciónDelCargo')}}</textarea>
     </div>
 
     <div class="form-group">
