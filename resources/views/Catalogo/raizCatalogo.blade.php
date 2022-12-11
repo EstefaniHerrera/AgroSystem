@@ -70,51 +70,55 @@
     </div>
 
         <br>
-    <table class="table table-bordered border-dark mt-3" >
-        <thead class="table table-striped table-hover">
-            <tr class="info">
-                <th scope="col">N°</th>
-                <th scope="col">Empresa proveedora</th>
-                <th scope="col">Nombre y descripción del catálogo</th>
-                <th scope="col">Fecha</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-        @forelse ($catalogo as $cata)
-            <tr class="active">
-                <th scope="col">{{ $cata->id}}</th>
-                <td scope="col">{{ $cata->proveedors->EmpresaProveedora}}</td>
-                <td scope="col">{{ $cata->NombreCatálogo}}</td>
-                <td scope="col">{{ $cata->FechaDeCatalogo}}</td>
-                <td>
-                    <a class="btn" style="background-color:white; border-color:black; color:black" 
-                    href="Archivos/{{ $cata->Documento }}" target="blank">
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                        Ver catálogo
-                    </a>
-                
-                    <a class="btn" style="background-color:white; border-color:black; color:black"  href="{{ route('catalogo.edit',['id' => $cata->id]) }}">
-                        <span class="glyphicon glyphicon-edit"></span>
-                        Editar
-                    </a>
-
-                    <a class="btn btn-danger" style="border-color:black; color:white;" onclick="EliminarCatalogo({{ $cata->id }})">
-                        <span class="glyphicon glyphicon-trash"></span>    
-                        Eliminar</a>
-                    </a>
-                                       
-                </td>
-
-            </tr>
-        @empty
-            <tr>
-                <td colspan="4"> No hay más catálogos </td>
-            </tr>
-        @endforelse
-
-        </tbody>
-    </table>
+        <div class="table-responsive">
+            <table class="table table-bordered border-dark mt-3">
+                <thead class="table table-striped table-hover">
+                    <tr class="info">
+                        <th scope="col">N°</th>
+                        <th scope="col">Empresa proveedora</th>
+                        <th scope="col">Nombre y descripción del catálogo</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($catalogo as $cata)
+                        <tr class="active">
+                            <th scope="col">{{ $cata->id }}</th>
+                            <td scope="col">{{ $cata->proveedors->EmpresaProveedora }}</td>
+                            <td scope="col">{{ $cata->NombreCatálogo }}</td>
+                            <td scope="col">{{ $cata->FechaDeCatalogo }}</td>
+                            <td>
+                                <a class="btn" style="background-color:white; border-color:black; color:black"
+                                    href="Archivos/{{ $cata->Documento }}" target="blank">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                    Ver catálogo
+                                </a>
+    
+                                <a class="btn" style="background-color:white; border-color:black; color:black"
+                                    href="{{ route('catalogo.edit', ['id' => $cata->id]) }}">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                    Editar
+                                </a>
+    
+                                <a class="btn btn-danger" style="border-color:black; color:white;"
+                                    onclick="EliminarCatalogo({{ $cata->id }})">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    Eliminar</a>
+                                </a>
+    
+                            </td>
+    
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4"> No hay más catálogos </td>
+                        </tr>
+                    @endforelse
+    
+                </tbody>
+            </table>
+        </div>
     {{ $catalogo->links()}}
 
 @endsection
