@@ -65,7 +65,7 @@
 
     <div class="form-group">
         <label for="total"> Total </label>
-        <input type="number" class="form-control" name="total" id="total" placeholder="Total del gasto" value="{{old('total', $gasto->total)}}" required step="any" min="1" max="50000">
+        <input type="number" class="form-control" name="total" id="total" placeholder="Total del gasto" value="{{old('total', $gasto->total)}}" required step="any" min="1" max="50000" minlength="1" maxlength="7" oninput="maxlengthNumber(this);">
     </div>
 
 
@@ -79,6 +79,12 @@
 @endsection
 @push('alertas')
 <script>
+    function maxlengthNumber(obj){
+        if(obj.value.length > obj.maxLength){
+            obj.value = obj.value.slice(0, obj.maxLength);
+        }
+    }
+    
     function confirmar() {
         var formul = document.getElementById("form_editar");
 
