@@ -55,7 +55,7 @@
             pattern="([2-3, 8-9][0-9]{7})" required placeholder="00000000"
             value="{{ old('TeléfonoCliente', $servicio->TeléfonoCliente) }}" maxlength="8"
             title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres"
-            {{--#65 Corrección para que no se ingresen caracteres no numéricos--}}
+            {{--#67 Corrección para que no se ingresen caracteres no numéricos--}}
             {{-- Llamada a la funcion para que solo tome numeros  --}}
             onkeypress="return valideKey(event);">
     </div>
@@ -92,7 +92,7 @@
 
 
 @push('alertas')
-{{--#65 Corrección para que no se ingresen caracteres no numéricos--}}
+{{--#67 Corrección para que no se ingresen caracteres no numéricos--}}
     {{-- Funcion para que solo tome numeros --}}
     <script type="text/javascript">
         function valideKey(evt) {
