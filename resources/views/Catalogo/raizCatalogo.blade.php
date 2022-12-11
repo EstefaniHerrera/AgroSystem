@@ -43,12 +43,16 @@
                         <div class="col-sm-2 my-1">
                             <label for="id">Fecha desde</label>
                             <input style="width: 100%" type="date" class="form-control" name="FechaDesde" id="Fechadesde"
-                                maxlength="40" value="{{ $fechadesde }}" max="<?php echo date('Y-m-d', strtotime($fecha_actual)); ?>" min="<?php echo date('Y-m-d', strtotime('2022-01-01')); ?>">
+                                maxlength="40" value="{{ $fechadesde }}" max="<?php echo date('Y-m-d', strtotime($fecha_actual)); ?>" 
+                                {{--#76 Corrección colocación de minimo--}}
+                                min="<?php echo date('Y-m-d', strtotime('2022-01-01')); ?>">
                         </div>
                         <div class="col-sm-2 my-1">
                             <label for="id">Fecha hasta</label>
                             <input style="width: 100%" type="date" class="form-control" name="FechaHasta" id="Fechahasta"
-                                maxlength="40" value="{{ $fechahasta }}" max="<?php echo date('Y-m-d', strtotime($fecha_actual)); ?>" min="<?php echo date('Y-m-d', strtotime('2022-01-01')); ?>">
+                                maxlength="40" value="{{ $fechahasta }}" max="<?php echo date('Y-m-d', strtotime($fecha_actual)); ?>" 
+                                {{--#76 Corrección colocación de minimo--}}
+                                min="<?php echo date('Y-m-d', strtotime('2022-01-01')); ?>">
                         </div>
 
                     </div>
@@ -61,7 +65,7 @@
     </div>
 @endsection
 @section('contenido')
-
+    {{--#74 Corrección eliminación de doble mensaje--}}
     <br><br>
     <h1 class=""> Listado de catálogos </h1>
     <br><br>
@@ -70,6 +74,7 @@
     </div>
 
         <br>
+        {{--#75 Corrección para hacer la tabla resposive--}}
         <div class="table-responsive">
             <table class="table table-bordered border-dark mt-3">
                 <thead class="table table-striped table-hover">
