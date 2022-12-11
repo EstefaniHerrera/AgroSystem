@@ -26,6 +26,14 @@
         @csrf
         <div class="row" style="width: 100%">
             <div class="col-sm-12">
+
+                <div class="d-grid gap-2 d-md-block ">
+                    <!-- 56. Botón regresar Cotizaciones de productos-->
+                    <a class="btn" style="background-color:rgb(65, 145, 126); border-color:black; color:white"
+                        href="/principal">
+                        Regresar </a>
+                </div>
+            
                 <button data-toggle="modal" data-target="#agreagar_detalle" type="button" class="btn"
                     style="background-color:rgb(65, 145, 126); border-color:black; color:white">
                     <span class="glyphicon glyphicon-plus-sign"></span>
