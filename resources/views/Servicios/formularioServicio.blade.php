@@ -53,7 +53,9 @@
             <label for="Teléfono"> Teléfono del cliente</label>
             <input type="tel" class="form-control" name="Teléfono" id="Teléfono" placeholder="00000000"
                 pattern="([2-3, 8-9][0-9]{7})" required value="{{ old('Teléfono') }}" maxlength="8"
-                title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres">
+                title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres" 
+                {{-- Llamada a la funcion para que solo tome numeros  --}}
+                onkeypress="return valideKey(event);">
         </div>
 
         <?php
@@ -92,6 +94,20 @@
 
 @section('js')
     @push('alertas')
+        {{-- Funcion para que solo tome numeros --}}
+        <script type="text/javascript">
+            function valideKey(evt) {
+                // code is the decimal ASCII representation of the pressed key.
+                var code = (evt.which) ? evt.which : evt.keyCode;
+                if (code == 8) { // backspace.
+                    return true;
+                } else if (code >= 48 && code <= 57) { // is a number.
+                    return true;
+                } else { // other keys.
+                    return false;
+                }
+            }
+        </script>
         <script>
             $(document).ready(function() {
 
