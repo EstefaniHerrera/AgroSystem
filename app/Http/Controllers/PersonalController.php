@@ -119,7 +119,7 @@ class PersonalController extends Controller
                 Rule::unique('personals')->ignore($personal->id),
             ],
             'FechaDeNacimiento'=>'required|date',
-            'FechaDeIngreso'=>'required|date', # 16 Se establecio un limite en la fecha
+            'FechaDeIngreso'=>'required|date', 
             'Ciudad'=>'required|max:20',
             'Dirección'=>'required|max:150'
         ]);
