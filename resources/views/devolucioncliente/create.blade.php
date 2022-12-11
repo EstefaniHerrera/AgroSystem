@@ -20,7 +20,7 @@
             {{ session('mensaje') }}
         </div>
     @endif
-
+    {{--#77 Corrección para que no se borre la descripción--}}
     @if(session()->has('console'))
     {{-- <div class="alert alert-success">
             {{session('console')}}
@@ -229,6 +229,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <form action="{{ route('detalle_devolucioncliente.crear', ['IdDevolucion' => $clientepedido]) }}"
+                        {{--#77 Corrección para que no se borre la descripción--}}
                         method="POST" id="form_agreagar_detalle" onsubmit="confirmarDetalle()">
                         @csrf
                         <div class="modal-header">
@@ -421,6 +422,7 @@
                     });
                 });
 
+                /* #77 Corrección para que no se borre la descripción */
                 var sites = {!! json_encode(session('console')) !!};
                 var newJson = JSON.parse(sites)
                 console.log(newJson)
@@ -466,6 +468,7 @@
 
                 }
 
+                /* #77 Corrección para que no se borre la descripción */
                 function confirmarDetalle() {
                 var formul = document.getElementById("form_agreagar_detalle");
                
