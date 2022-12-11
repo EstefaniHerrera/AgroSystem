@@ -38,7 +38,7 @@
 
     <div class="form-group">
         <label for="descripcion"> Descripción </label>
-        <textarea name="descripcion" id="descripcion" placeholder="Descripción del gasto" class="form-control" maxlength="200" required cols="30" rows="6">{{old('descripcion', $gasto->descripcion)}}</textarea>
+        <textarea name="descripcion" id="descripcion" placeholder="Descripción del gasto" class="form-control" maxlength="150" minlength="5" required cols="30" rows="6">{{old('descripcion', $gasto->descripcion)}}</textarea>
     </div>
 
     <div class="form-group">
@@ -84,7 +84,7 @@
             obj.value = obj.value.slice(0, obj.maxLength);
         }
     }
-    
+
     function confirmar() {
         var formul = document.getElementById("form_editar");
 
