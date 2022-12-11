@@ -35,8 +35,8 @@ class CargoController extends Controller
     public function store(Request $request){
         //VALIDAR
         $request->validate([
-            'NombreDelCargo'=>'required|unique:cargos|string|max:40', 
-            'DescripciónDelCargo'=>'required|string|max:200|min:5', /* # 2 Se establecio el maxlength y el minlength */
+            'NombreDelCargo'=>'required|unique:cargos|string|max:40',
+            'DescripciónDelCargo'=>'required|string|max:110|min:5', 
             'Sueldo'=>'required|numeric|min:1000.00|max:30000.00'
         ]);
 
