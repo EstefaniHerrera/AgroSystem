@@ -30,7 +30,9 @@
             <select class="form-control" name="Cargo" id="Cargo" required>
                 <option value="">--Seleccione--</option>
                 @foreach ($cargos as $cargo)
-                    <option value="{{ $cargo['id'] }}">{{ $cargo['NombreDelCargo'] }}</option>
+                    {{-- # 10 Se agrego la opcion para que la seleccion no se borre cuando exista un error en el formulario--}}
+                    <option value="{{ $cargo['id'] }}" @if (old('Cargo') == $cargo->id) @selected(true) @endif>
+                        {{ $cargo['NombreDelCargo'] }}</option>
                 @endforeach
             </select>
         </div>
