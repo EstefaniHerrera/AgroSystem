@@ -47,6 +47,12 @@
             function fp() {
                 document.getElementById("FechaPago").required = true;
             }
+
+            function maxlengthNumber(obj){
+                if(obj.value.length > obj.maxLength){
+                    obj.value = obj.value.slice(0, obj.maxLength);
+                }
+            }
         </script>
 
         <div class="row" style="width: 87%">
@@ -357,7 +363,8 @@
                                         value="{{ old('Precio_compra') }}" id="Precio_compra" required
                                         title="Ingrese el precio de compra en números sin decimales." pattern="[0-9]+"
                                         maxlength="4" placeholder="0.00" min="1" max="9998"
-                                        onchange="pv()">
+                                        onchange="pv()"
+                                           oninput="maxlengthNumber(this);">
                                 </div>
                             </div>
                         </div>
@@ -378,7 +385,8 @@
                                         class="form-control {{ $errors->has('Precio_venta') ? 'is-invalid' : '' }}"
                                         value="{{ old('Precio_venta') }}" id="Precio_venta" required
                                         title="Ingrese el precio de venta en números sin decimales." pattern="[0-9]+"
-                                        maxlength="4" placeholder="0.00" min="" max="9999">
+                                        maxlength="4" placeholder="0.00" min="" max="9999"
+                                           oninput="maxlengthNumber(this);">
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -388,7 +396,8 @@
                                         class="form-control {{ $errors->has('Cantidad') ? 'is-invalid' : '' }}"
                                         value="{{ old('Cantidad') }}" id="Cantidad" required
                                         title="Ingrese cantidad de la compra en números." maxlength="4" pattern="[0-9]+"
-                                        placeholder="0" min="1" max="9999">
+                                        placeholder="0" min="1" max="9999"
+                                           oninput="maxlengthNumber(this);">
                                 </div>
                             </div>
                         </div>
@@ -410,7 +419,7 @@
                                         class="form-control {{ $errors->has('fecha') ? 'is-invalid' : '' }}"
                                         value="{{ old('fecha', 0) }}" id="fecha"
                                         title="Ingrese la fecha de vencimiento" min="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 1 day')); ?>"
-                                        
+                                           max="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 60 day')); ?>">
                                 </div>
                             </div>
                         </div>
@@ -563,7 +572,7 @@
                                         value="{{ old('Precio_compra') }}" id="e_Precio_compra" required
                                         onchange="e_pv()" title="Ingrese el precio de compra en números sin decimales."
                                         maxlength="4" pattern="[0-9]+" placeholder="0.00" min="1"
-                                        max="9999">
+                                        max="9999" oninput="maxlengthNumber(this);" >
                                 </div>
                             </div>
                         </div>
@@ -585,7 +594,7 @@
                                         class="form-control {{ $errors->has('Precio_venta') ? 'is-invalid' : '' }}"
                                         value="{{ old('Precio_venta') }}" id="e_Precio_venta" required
                                         title="Ingrese el Precio de venta en números." maxlength="4" pattern="[0-9]+"
-                                        placeholder="0.00" max="9999">
+                                        placeholder="0.00" max="9999" oninput="maxlengthNumber(this);">
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -595,7 +604,9 @@
                                         class="form-control {{ $errors->has('Cantidad') ? 'is-invalid' : '' }}"
                                         value="{{ old('Cantidad') }}" id="e_Cantidad" required
                                         title="Ingrese cantidad de la compra en números." maxlength="4" pattern="[0-9]+"
-                                        placeholder="0" min="1">
+                                        placeholder="0" min="1"
+                                           oninput="maxlengthNumber(this);"
+                                    >
                                 </div>
                             </div>
                         </div>
