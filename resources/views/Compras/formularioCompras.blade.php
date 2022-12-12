@@ -358,14 +358,14 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    // Correccion del error N35 se establecio limite en el campo
                                     <label style="width: 100%" for="">Precio de compra</label>
                                     <input style="width: 100%" type="number" name="Precio_compra"
                                         class="form-control {{ $errors->has('Precio_compra') ? 'is-invalid' : '' }}"
                                         value="{{ old('Precio_compra') }}" id="Precio_compra" required
                                         title="Ingrese el precio de compra en números sin decimales." pattern="[0-9]+"
                                         maxlength="4" placeholder="0.00" min="1" max="9998"
-                                        onchange="pv()"
-                                           oninput="maxlengthNumber(this);">
+                                        onchange="pv()" oninput="maxlengthNumber(this);">
                                 </div>
                             </div>
                         </div>
