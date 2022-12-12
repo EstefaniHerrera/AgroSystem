@@ -82,6 +82,7 @@
 
             <div class="col-sm-4">
                 <div class="form-group">
+                    <!--Correccion del error N34 se establecio limite en el año -->
                     <label style="width: 100%" for=""> Fecha del pago </label>
                     <input style="width: 100%" type="date" name="FechaPago"
                         class="form-control {{ $errors->has('FechaPago') ? 'is-invalid' : '' }}"
@@ -417,6 +418,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <!--Correccion del error N38 se establecio limite en el año -->
                                     <label style="width: 100%" for="">Fecha de vencimiento</label>
                                     <input style="width: 100%" type="date" name="fecha"
                                         class="form-control {{ $errors->has('fecha') ? 'is-invalid' : '' }}"
