@@ -86,7 +86,8 @@
                     <input style="width: 100%" type="date" name="FechaPago"
                         class="form-control {{ $errors->has('FechaPago') ? 'is-invalid' : '' }}"
                         value="{{ old('FechaPago') }}" id="FechaPago" title="Ingrese la fecha en la que hara el pago"
-                        min="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 1 day')); ?>" max="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 30 day')); ?>">
+                        min="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 1 day')); ?>" max="
+                         <?php echo date('Y-m-d', strtotime($fecha_actual . '+ 28 day')); ?>">
                 </div>
             </div>
 
@@ -630,7 +631,7 @@
                                         title="Ingrese la fecha de vencimiento"
                                            min="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 1 day')); ?>"
                                            max="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 60 day')); ?>"
-                                           
+
                                     >
                                 </div>
                             </div>
