@@ -123,10 +123,6 @@
     <h1 class=""> Listado de ventas </h1>
     <br><br>
     <div class="d-grid gap-2 d-md-block ">
-        <!-- 53. Botón regresar lista ventas-->
-        <a class="btn" style="background-color:rgb(65, 145, 126); border-color:black; color:white"
-            href="/principal">
-            Regresar </a>
         <a class="btn" style="background-color:rgb(65, 145, 126); border-color:black; color:white"
             href="{{ route('ventas.crear', ['clientepedido' => 0]) }}"><span class="glyphicon glyphicon-plus"></span>
             Agregar venta </a>

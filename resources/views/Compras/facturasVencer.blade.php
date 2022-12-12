@@ -76,12 +76,6 @@
 
     <h1 class=""> Listado de facturas próximas a vencer </h1>
     <br><br>
-    <div class="d-grid gap-2 d-md-block ">
-        <!-- 54. Botón regresar lista facturas por vencer-->
-        <a class="btn" style="background-color:rgb(65, 145, 126); border-color:black; color:white"
-            href="/principal">
-            Regresar </a>
-    </div>
     <br>
     <div class="table-responsive">
         <table class="table table-bordered border-dark mt-3">
