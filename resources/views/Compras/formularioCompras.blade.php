@@ -631,6 +631,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <!--Correccion del error N45 se establecio limite en el año -->
                                     <label style="width: 100%" for="">Fecha de vencimiento</label>
                                     <input style="width: 100%" type="date" name="fecha"
                                         class="form-control {{ $errors->has('fecha') ? 'is-invalid' : '' }}"
