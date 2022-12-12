@@ -393,6 +393,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <!--Correccion del error N37 se establecio limite en el campo -->
                                     <label style="width: 100%" for="">Cantidad</label>
                                     <input style="width: 100%" type="number" name="Cantidad"
                                         class="form-control {{ $errors->has('Cantidad') ? 'is-invalid' : '' }}"
