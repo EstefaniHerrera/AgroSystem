@@ -43,7 +43,7 @@
 
     <div class="form-group">
         <label for="Sueldo"> Sueldo </label>
-        <input type="number" class="form-control" name="Sueldo" id="Sueldo" placeholder="0" min="1000" max="100000" required 
+        <input type="text" class="form-control" name="Sueldo" id="Sueldo" placeholder="0" min="1000" max="100000" required 
         value="{{old('Sueldo', $cargo->Sueldo)}}" maxlength="8" title="Ingrese el sueldo sin decimales"
         {{-- # 3 Llamada a la funcion para que solo tome numeros  --}}
         onkeypress="return valideKey(event);">
