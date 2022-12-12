@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('proveedor_id');
             $table->foreign('proveedor_id')->references('id')->on('proveedors');
             $table->date('FechaCompra');
-            $table->float('TotalCompra');
-            $table->float('TotalImpuesto');
+            $table->string('TotalCompra'); //  N39 correccion al ingresar una compra con datos grande
+            $table->string('TotalImpuesto'); //  N39 correccion al ingresar una compra con datos grande
             $table->boolean('PagoCompra');
             $table->date('FechaPago')->nullable();
             $table->timestamps();
