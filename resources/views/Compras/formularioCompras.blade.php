@@ -571,6 +571,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <!--Correccion del error N42 se establecio limite en el campo -->
                                     <label style="width: 100%" for="">Precio de compra</label>
                                     <input style="width: 100%" type="number" name="Precio_compra"
                                         class="form-control {{ $errors->has('Precio_compra') ? 'is-invalid' : '' }}"
@@ -594,6 +595,7 @@
                         <div class="row" style="width: 100%">
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <!--Correccion del error N43 se establecio limite en el campo -->
                                     <label style="width: 100%" for="">Precio de venta</label>
                                     <input style="width: 100%" type="number" name="Precio_venta"
                                         class="form-control {{ $errors->has('Precio_venta') ? 'is-invalid' : '' }}"
@@ -604,6 +606,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <!--Correccion del error N44 se establecio limite en el campo -->
                                     <label style="width: 100%" for="">Cantidad</label>
                                     <input style="width: 100%" type="number" name="Cantidad"
                                         class="form-control {{ $errors->has('Cantidad') ? 'is-invalid' : '' }}"
