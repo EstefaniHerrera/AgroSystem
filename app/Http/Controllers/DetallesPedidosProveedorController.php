@@ -49,7 +49,7 @@ class DetallesPedidosProveedorController extends Controller
         }
 
 
-        return redirect()->route('pedidosProveedor.crear');
+        return redirect()->route('pedidosProveedor.crear',['idProveedorss' => $request->input('IdProveedor')]);
     }
 
     public function destroy($id)
@@ -63,7 +63,7 @@ class DetallesPedidosProveedorController extends Controller
 
     public function agregar_detalle_edit(Request $request)
     {
-        
+
         $rules = [
             'NombreDelProducto' => 'required|max:40',
             'presentacion' => 'required|max:30',
@@ -104,8 +104,9 @@ class DetallesPedidosProveedorController extends Controller
             $detalle->Cantidad = $request->input('Cantidad');
             $detalle->save();
         }
+        //<!-- 62 y 63. Corrección de mantener proveedor al agregar y editar detalles -->
 
-        return redirect()->route('pedidosProveedor.crear');
+        return redirect()->route('pedidosProveedor.crear',['idProveedorss' => $request->input('IdProveedor')]);
     }
 
     public function edit_agregar_detalle($id, Request $request)
@@ -178,8 +179,8 @@ class DetallesPedidosProveedorController extends Controller
 
     public function edit_agregar_detalle_edit($id, Request $request)
     {
-       
-        
+
+
         $rules = [
             'NombreDelProducto' => 'required|max:40',
             'presentacion' => 'required|max:30',
@@ -242,7 +243,7 @@ class DetallesPedidosProveedorController extends Controller
                     $detalle->Cantidad = $request->input('Cantidad');
                     $detalle->save();
             }
-            
+
         }
 
         return redirect()->route('pedidosProveedor.edit', ['id' => $id]);

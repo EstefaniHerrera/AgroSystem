@@ -15,7 +15,7 @@
             </ul>
         </div>
     @endif
-   
+
     @if (session('mensaje'))
         <div class="alert alert-success">
             {{ session('mensaje') }}
@@ -33,7 +33,7 @@
                         style="width: 100%">
                         <option style="display: none;" value="">Seleccione un proveedor</option>
                         @foreach ($proveedor as $p)
-                            <option value="{{ $p->id }}" @if (old('Proveedor') == $p->id) @selected(true) @endif>
+                            <option value="{{ $p->id }}" @if ($idProveedorss == $p->id) @selected(true) @endif>
                                 {{ $p->EmpresaProveedora }}
                             </option>
                         @endforeach
@@ -53,7 +53,7 @@
 
         <div class="row" style="width: 100%">
             <div class="col-sm-12">
-                <button data-toggle="modal" data-target="#agreagar_detalleP" type="button" class="btn"
+                <button data-toggle="modal" data-target="#agreagar_detalleP" onclick="agregar_cliente()" type="button" class="btn"
                     style="background-color:rgb(65, 145, 126); border-color:black; color:white">
                     <span class="glyphicon glyphicon-plus-sign"></span>
                     Agregar detalles</button>
@@ -101,7 +101,7 @@
                                     </td>
                                     <td>
                                         <button
-                                            onclick="editar_detalleP(  '{{ $de->Producto }}',                                                                         
+                                            onclick="editar_detalleP(  '{{ $de->Producto }}',
                                                                                         '{{ $de->Presentacion }}',
                                                                                         '{{ $de->Cantidad }}',
                                                                                         {{ $de->id }})"
@@ -152,6 +152,8 @@
                     </div>
 
                     <div class="modal-body">
+                        <input type="text" name="IdProveedor" id="IdProveedor"
+                                    hidden>
                         <div class="row" style="width: 100%">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -217,6 +219,9 @@
                                         maxlength="40" value="{{ old('NombreDelProducto') }}">
                                 </div>
                                 <input type="text" name="IdDetalle" id="e_IdDetalle" hidden>
+                                <!-- 62 y 63. Corrección de mantener proveedor al agregar y editar detalles -->
+                                <input type="text" name="e_IdProveedor" id="e_IdProveedor"
+                                hidden>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -268,12 +273,20 @@
                 });
             });
 
+            //<!-- 62 y 63. Corrección de mantener proveedor al agregar y editar detalles -->
+            function agregar_cliente() {
+                    $('#IdProveedor').val($('#Proveedor').val());
+                    $('#e_IdProveedor').val($('#Proveedor').val());
+
+                }
+
             function editar_detalleP(Producto, Presentacion, Cantidad, id) {
                 $('#e_NombreDelProducto').val(Producto);
                 $('#e_presentacion').val(Presentacion);
                 $('#e_Cantidad').val(Cantidad);
                 $('#e_IdDetalle').val(id);
-
+                //<!-- 62 y 63. Corrección de mantener proveedor al agregar y editar detalles -->
+                agregar_cliente();
             }
 
             function confirmar() {

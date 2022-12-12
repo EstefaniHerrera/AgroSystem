@@ -23,10 +23,10 @@ class PedidosProveedorController extends Controller
             ->where('EmpresaProveedora', 'like', '%' . $proveedor . '%')
             ->paginate(15);
             foreach ($pedidos  as $key => $value) {
-                $value->proveedor = Proveedor::findOrFail($value->proveedor_id);  
-                
+                $value->proveedor = Proveedor::findOrFail($value->proveedor_id);
+
             }
-            
+
         return view('Compras.indexPedidosProveedor')->with('pedidos', $pedidos)->with('proveedor', $proveedor) ->with('total_cantidad', $total_cantidad);
     }
 
@@ -38,7 +38,8 @@ class PedidosProveedorController extends Controller
         return view('Compras.detallePedidosProveedor')->with('pedidos', $pedidos)->with('detalles', $details);
     }
 
-    public function create()
+    //<!-- 62 y 63. Corrección de mantener proveedor al agregar y editar detalles -->
+    public function create($idProveedorss = 0)
     {
         $total_cantidad = 0;
         $detalles =  DetallesPedidosProveedor::where('IdPedido', 0)->get();
@@ -51,7 +52,9 @@ class PedidosProveedorController extends Controller
         return view('Compras.formularioPedidosProveedor')
             ->with('proveedor', $proveedor)
             ->with('detalles', $detalles)
-            ->with('total_cantidad', $total_cantidad);
+            ->with('total_cantidad', $total_cantidad)
+            //<!-- 62 y 63. Corrección de mantener proveedor al agregar y editar detalles -->
+            ->with('idProveedorss', $idProveedorss);
     }
 
     public function store(Request $request)
@@ -131,7 +134,7 @@ class PedidosProveedorController extends Controller
             $existe = DB::table('detalles_pedidos_proveedores_temporals')->where('IdPedido', '=', $id)
                                                             ->where('Producto', '=', $value->Producto)
                                                             ->where('Presentacion', '=', $value->Presentacion)->exists();
-            
+
             $exis = DB::table('detalles_pedidos_proveedores_temporals')->where('IdPedido', '=', null)
                                                             ->where('Producto', '=', $value->Producto)
                                                             ->where('Presentacion', '=', $value->Presentacion)->exists();

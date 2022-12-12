@@ -500,7 +500,9 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
     Route::get('/pedidosProveedor/detalle/{id}', [PedidosProveedorController::class, 'show'])
     ->name('pedidosProveedor.show');
 
-    Route::get('/pedidosProveedor/crear', [PedidosProveedorController::class, 'create'])
+    //<!-- 62 y 63. Corrección de mantener proveedor al agregar y editar detalles -->
+
+    Route::get('/pedidosProveedor/crear/{idProveedorss?}', [PedidosProveedorController::class, 'create'])
     ->name('pedidosProveedor.crear');
 
     Route::post('/pedidosP/crear', [PedidosProveedorController::class, 'store'])
