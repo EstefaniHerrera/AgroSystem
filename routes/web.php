@@ -244,7 +244,8 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
 
     /********************************* COMPRAS y REPORTE *********************************/
 
-    Route::get('/compras/crear',[CompraController::class, 'create'])
+    // #40. Corrección al llenar la factura.
+    Route::get('/compras/crear/{numerCompra?}/{proveedorId?}/{fechaPago?}/{fechaCompra?}/{tipoPago?}/',[CompraController::class, 'create'])
     ->name('compras.crear');
 
     Route::get('/compras/limpiar',[CompraController::class, 'limpiar'])
@@ -404,7 +405,7 @@ Route::get('/personals/buscar', [PersonalController::class, 'index2'])
     Route::get('/pedidosProductoNuevoClientes/detalle/{id}', [PedidosProductosNuevosController::class, 'show'])
     ->name('pedidosClienteP.show');
 
-    Route::get('/pedidosProductoNuevoClientes/crear', [PedidosProductosNuevosController::class, 'create'])
+    Route::get('/pedidosProductoNuevoClientes/crear/{clien?}/{anticipo?}', [PedidosProductosNuevosController::class, 'create'])
     ->name('pedidosClienteP.crear');
 
     Route::post('/pedidosProductoNuevo/crear', [PedidosProductosNuevosController::class, 'store'])
