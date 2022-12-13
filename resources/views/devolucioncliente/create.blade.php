@@ -479,7 +479,7 @@
                     .appendTo("#form_agreagar_detalle");
 
                 Swal.fire({
-                    title: '¿Está seguro que desea guardar los datos de este detalle?',
+                    title: '¿Está seguro que desea devolver este producto?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
