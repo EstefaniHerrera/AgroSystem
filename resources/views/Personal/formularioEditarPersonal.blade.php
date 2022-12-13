@@ -93,7 +93,7 @@
     <div class="form-group">
         <label for="FechaDeIngreso">Fecha ingreso:</label>
         <input required type="date" class="form-control " name="FechaDeIngreso" id="FechaDeIngreso"
-        value="{{old('FechaDeIngreso', $personal->FechaDeIngreso)}}" min="<?php echo date('Y-m-d',strtotime($fecha_actual."- 70 year"));?>"
+        value="{{old('FechaDeIngreso', $personal->FechaDeIngreso)}}" min="<?php echo date('Y-m-d',strtotime("2014-01-01"));?>"
         max="<?php echo date('Y-m-d',strtotime($fecha_actual));?>">
     </div>
 
