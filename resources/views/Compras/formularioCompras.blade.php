@@ -424,7 +424,7 @@
                                         class="form-control {{ $errors->has('fecha') ? 'is-invalid' : '' }}"
                                         value="{{ old('fecha', 0) }}" id="fecha"
                                         title="Ingrese la fecha de vencimiento" min="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 1 day')); ?>"
-                                           max="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 60 day')); ?>">
+                                           max="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 3 years')); ?>">
                                 </div>
                             </div>
                         </div>
@@ -638,7 +638,7 @@
                                         value="{{ old('fecha', 0) }}" id="e_fecha"
                                         title="Ingrese la fecha de vencimiento"
                                            min="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 1 day')); ?>"
-                                           max="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 60 day')); ?>"
+                                           max="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 3 years')); ?>"
 
                                     >
                                 </div>
