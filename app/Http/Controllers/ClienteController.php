@@ -49,7 +49,8 @@ class ClienteController extends Controller
             'Telefono'=>'nullable|max:8|unique:clientes',
             'LugarDeProcedencia'=>'required|max:70|min:10'
         ], [
-            'IdentidadDelCliente.require'=>'El numero de identidad debe comenzar con 0 o con 1'
+            'IdentidadDelCliente.require'=>'El numero de identidad debe comenzar con 0 o con 1',
+            'LugarDeProcedencia.min'=>'Ingrese al menos 10 letras en el campo dirección.'
         ]);
 
         $nuevoCliente = new Cliente();
