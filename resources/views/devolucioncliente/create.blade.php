@@ -476,6 +476,7 @@
                     .attr("id", "descripcion")
                     .attr("name", "descripcion")
                     .attr("value", $("#descripcion").val())
+                    .attr("hidden", true)
                     .appendTo("#form_agreagar_detalle");
 
                 Swal.fire({
