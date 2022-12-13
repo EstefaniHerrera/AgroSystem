@@ -332,7 +332,7 @@
                                         class="form-control {{ $errors->has('Cantidad') ? 'is-invalid' : '' }}"
                                         value="{{ old('Cantidad') }}" id="Cantidad" required placeholder="0"
                                         title="Ingrese cantidad de la compra en números." maxlength="4" pattern="[0-9]+"
-                                        min="1" onkeypress="return valideKey(event);>
+                                        min="1" onkeypress="return valideKey(event);">
                                 </div>
                             </div>
                         </div>
@@ -521,7 +521,7 @@
                                         class="form-control {{ $errors->has('Cantidad') ? 'is-invalid' : '' }}"
                                         value="{{ old('Cantidad') }}" id="e_Cantidad" required placeholder="0"
                                         title="Ingrese cantidad de la compra en números." maxlength="4" pattern="[0-9]+"
-                                        min="1" onkeypress="return valideKey(event);>
+                                        min="1" onkeypress="return valideKey(event);">
                                 </div>
                             </div>
                         </div>
