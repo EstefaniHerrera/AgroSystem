@@ -25,14 +25,7 @@
         onsubmit="confirmar()">
         @csrf
         <div class="row" style="width: 100%">
-            <div class="col-sm-12">
-
-
-                <!-- 56. Botón regresar Cotizaciones de productos-->
-                <a class="btn" style="background-color:rgb(65, 145, 126); border-color:black; color:white"
-                        href="/principal">
-                        Regresar </a>
-             
+            <div class="col-sm-12">            
             
                 <button data-toggle="modal" data-target="#agreagar_detalle" type="button" class="btn"
                     style="background-color:rgb(65, 145, 126); border-color:black; color:white">
@@ -339,7 +332,7 @@
                                         class="form-control {{ $errors->has('Cantidad') ? 'is-invalid' : '' }}"
                                         value="{{ old('Cantidad') }}" id="Cantidad" required placeholder="0"
                                         title="Ingrese cantidad de la compra en números." maxlength="4" pattern="[0-9]+"
-                                        min="1">
+                                        min="1" onkeypress="return valideKey(event);>
                                 </div>
                             </div>
                         </div>
@@ -524,11 +517,11 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label style="width: 100%" for="">Cantidad</label>
-                                    <input style="width: 100%" type="number" name="Cantidad"
+                                    <input style="width: 100%" type="text" name="Cantidad"
                                         class="form-control {{ $errors->has('Cantidad') ? 'is-invalid' : '' }}"
                                         value="{{ old('Cantidad') }}" id="e_Cantidad" required placeholder="0"
                                         title="Ingrese cantidad de la compra en números." maxlength="4" pattern="[0-9]+"
-                                        min="1">
+                                        min="1" onkeypress="return valideKey(event);>
                                 </div>
                             </div>
                         </div>
@@ -554,6 +547,19 @@
 
 @section('js')
     @push('alertas')
+    <script type="text/javascript"> 
+        function valideKey(evt){    
+            // code is the decimal ASCII representation of the pressed key.
+                var code = (evt.which) ? evt.which : evt.keyCode;
+            if(code==8) { // backspace.
+                return true;
+            } else if(code>=48 && code<=57) { // is a number.
+                return true;
+            } else{ // other keys.
+                return false;
+            }
+        }
+    </script>
         <script>
             function editar_detalle(IdProducto, categoria_id, IdPresentacion, Cantidad, Precio_venta, id) {
                 $('#e_IdCategoria').val(categoria_id);
