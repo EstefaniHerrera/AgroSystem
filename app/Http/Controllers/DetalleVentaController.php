@@ -73,7 +73,11 @@ class DetalleVentaController extends Controller
             $inve->save();
         }
 
-        return redirect()->route('ventas.crear', ['clientepedido' => $request->Idcliente]);
+        $c = $request->Idcliente;
+        if($c == null){
+            $c = " ";
+        }
+        return redirect()->route('ventas.crear', ['clientepedido' => $c]);
         // return back(302, [], true);
     }
 
@@ -174,6 +178,10 @@ class DetalleVentaController extends Controller
             $inve->save();
         }
 
-        return redirect()->route('ventas.crear', ['clientepedido' => $request->e_Idcliente]);
+        $c = $request->e_Idcliente;
+        if($c == null){
+            $c = " ";
+        }
+        return redirect()->route('ventas.crear', ['clientepedido' => $c]);
     }
 }
