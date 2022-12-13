@@ -40,7 +40,8 @@ class PedidosProductosNuevosController extends Controller
         return view('Ventas.detallePedidosProductosNuevos')->with('pedidos', $pedidos)->with('detalles', $details);
     }
 
-    public function create()
+    /* Corrección de formulario de pedido de productos nuevos */
+    public function create($clien = 0, $anticipo = 0)
     {
         $total_cantidad = 0;
         $detalles =  DetallesPedidosProductosNuevos::where('IdPedido', 0)->get();
@@ -53,7 +54,9 @@ class PedidosProductosNuevosController extends Controller
         return view('Ventas.formularioPedidosProductosNuevos')
             ->with('cliente', $cliente)
             ->with('detalles', $detalles)
-            ->with('total_cantidad', $total_cantidad);
+            ->with('total_cantidad', $total_cantidad)
+            ->with('clien', $clien)
+            ->with('anticipo', $anticipo);
     }
 
 
