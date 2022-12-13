@@ -56,7 +56,7 @@
             <label for="TeléfonoDeLaEmpresa"> Teléfono de la empresa </label>
             <input type="tel" class="form-control" name="TeléfonoDeLaEmpresa" id="TeléfonoDeLaEmpresa"
                 placeholder="00000000" pattern="([2-3, 8-9][0-9]{7})" required value="{{ old('TeléfonoDeLaEmpresa') }}" 
-                maxlength="8" title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres">
+                maxlength="8" title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres"
                  {{-- # 19 Llamada a la funcion para que solo tome numeros  --}}
                         onkeypress="return valideKey(event);">
         </div>
