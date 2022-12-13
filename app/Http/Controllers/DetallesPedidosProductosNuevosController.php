@@ -48,8 +48,13 @@ class DetallesPedidosProductosNuevosController extends Controller
             $detalle->save();
         }
 
+        /* Corrección de formulario de pedido de productos nuevos */
+        $c = $request->n_cliente;
+        if($c == null){
+            $c = "-";
+        }
 
-        return redirect()->route('pedidosClienteP.crear');
+        return redirect()->route('pedidosClienteP.crear', ['clien' => $c, 'anticipo' => $request->n_anticipo]);
     }
 
     public function destroy($id)
@@ -108,7 +113,13 @@ class DetallesPedidosProductosNuevosController extends Controller
             $detalle->save();
         }
 
-        return redirect()->route('pedidosClienteP.crear');
+        /* Corrección de formulario de pedido de productos nuevos */
+        $c = $request->e_cliente;
+        if($c == null){
+            $c = "-";
+        }
+
+        return redirect()->route('pedidosClienteP.crear', ['clien' => $c, 'anticipo' => $request->e_anticipo]);
     }
 
     public function edit_agregar_detalle($id, Request $request)
