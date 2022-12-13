@@ -54,7 +54,7 @@
                     <label for="Cliente"> Cliente </label>
                     <select name="Cliente" id="Cliente" class="select222" required style="width: 100%">
                         <option style="display: none;" value="">Seleccione un cliente</option>
-                        <option value=" ">Consumidor Final</option>
+                        <option value=" " @if ($client == " ") @selected(true) @endif>Consumidor Final</option>
                         @foreach ($cliente as $c)
                             <!--Correccion #49. Si se selecciona el cliente y de ahí se agrega el detalle se deselecciona el cliente -->
                             <option value="{{ $c->id }}" @if(old('Idcliente') == $c->id) @selected(true) @endif
