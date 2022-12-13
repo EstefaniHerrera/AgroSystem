@@ -50,7 +50,8 @@ class ClienteController extends Controller
             'LugarDeProcedencia'=>'required|max:70|min:10'
         ], [
             'IdentidadDelCliente.require'=>'El numero de identidad debe comenzar con 0 o con 1',
-            'LugarDeProcedencia.min'=>'Ingrese al menos 10 letras en el campo dirección.'
+            'LugarDeProcedencia.min'=>'Ingrese al menos 10 letras en el campo dirección.',
+            'LugarDeProcedencia.max'=>'Solo se permiten 70 letras en el campo dirección.'
         ]);
 
         $nuevoCliente = new Cliente();
@@ -83,6 +84,10 @@ class ClienteController extends Controller
             'ApellidosDelCliente'=>'required|max:40',
             'Telefono'=>'nullable|max:8|unique:clientes',
             'LugarDeProcedencia'=>'required|max:70|min:10'
+        ], [
+            'IdentidadDelCliente.require'=>'El numero de identidad debe comenzar con 0 o con 1',
+            'LugarDeProcedencia.min'=>'Ingrese al menos 10 letras en el campo dirección.',
+            'LugarDeProcedencia.max'=>'Solo se permiten 70 letras en el campo dirección.'
         ]);
 
         $nuevoCliente = new Cliente();
@@ -115,7 +120,11 @@ class ClienteController extends Controller
             'NombresDelCliente'=>'required||max:30',
             'ApellidosDelCliente'=>'required|max:40',
             'Telefono'=>'nullable|max:8|unique:clientes',
-            'LugarDeProcedencia'=>'required|max:120'
+            'LugarDeProcedencia'=>'required|max:70|min:10'
+        ], [
+            'IdentidadDelCliente.require'=>'El numero de identidad debe comenzar con 0 o con 1',
+            'LugarDeProcedencia.min'=>'Ingrese al menos 10 letras en el campo dirección.',
+            'LugarDeProcedencia.max'=>'Solo se permiten 70 letras en el campo dirección.'
         ]);
 
         $nuevoCliente = new Cliente();
@@ -147,7 +156,11 @@ class ClienteController extends Controller
             'NombresDelCliente'=>'required||max:30',
             'ApellidosDelCliente'=>'required|max:40',
             'Telefono'=>'nullable|max:8|unique:clientes',
-            'LugarDeProcedencia'=>'required|max:120'
+            'LugarDeProcedencia'=>'required|max:70|min:10'
+        ], [
+            'IdentidadDelCliente.require'=>'El numero de identidad debe comenzar con 0 o con 1',
+            'LugarDeProcedencia.min'=>'Ingrese al menos 10 letras en el campo dirección.',
+            'LugarDeProcedencia.max'=>'Solo se permiten 70 letras en el campo dirección.'
         ]);
 
         $nuevoCliente = new Cliente();
@@ -190,7 +203,10 @@ class ClienteController extends Controller
                 'max:9',
                 Rule::unique('clientes')->ignore($cliente->id),
             ],
-            'LugarDeProcedencia'=>'required|max:120'
+            'LugarDeProcedencia'=>'required|max:70|min:10'
+        ], [
+            'LugarDeProcedencia.min'=>'Ingrese al menos 10 letras en el campo dirección.',
+            'LugarDeProcedencia.max'=>'Solo se permiten 70 letras en el campo dirección.'
         ]);
 
         $cliente->IdentidadDelCliente = $request->input('IdentidadDelCliente');
