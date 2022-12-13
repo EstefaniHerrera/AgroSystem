@@ -59,7 +59,7 @@
         <label for="LugarDeProcedencia"> Dirección </label>
         <input type="text" class="form-control" name="LugarDeProcedencia" id="LugarDeProcedencia"
         {{-- # 27 se corrigio el maxlength para que coincida con los establecido en el controlador --}}
-        placeholder="Lugar de Procedencia" maxlength="70" minlength="10" value="{{old('LugarDeProcedencia')}}" required>
+        placeholder="Lugar de Procedencia" maxlength="70" value="{{old('LugarDeProcedencia')}}" required>
     </div>
 
     <br>
