@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetalleCompra;
 use App\Models\Producto;
 use App\Models\Categoria;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Return_;
@@ -99,9 +100,25 @@ class DetalleCompraController extends Controller
             $detalle->save();
         }
 
+        /* #40. Corrección de la factura de compras */
+        $n = $request->input('n_NumFactura');
+        if($n == null){
+            $n = 0;
+        }
+        $fc = $request->input('n_FechaCompra');
+        if($fc == null){
+            $fc = Carbon::now()->format('Y-m-d');
+        }
+        $p = $request->input('n_Proveedor');
+        if($p == null){
+            $p = "-";
+        }
         
-
-        return redirect()->route('compras.crear');
+        return redirect()->route('compras.crear',['numerCompra' => $n,
+                                                  'proveedorId' => $p, 
+                                                  'fechaPago' => $request->input('n_FechaPago') , 
+                                                  'fechaCompra' => $fc,
+                                                  'tipoPago' => $request->input('n_TipoPago')]);
     }
 
     public function destroy($id)
@@ -201,7 +218,16 @@ class DetalleCompraController extends Controller
             $detalle->save();
         }
 
+        /* #40. Corrección de la factura de compras */
+        $p = $request->input('e_Proveedor');
+        if($p == null){
+            $p = "-";
+        }
 
-        return redirect()->route('compras.crear');
+        return redirect()->route('compras.crear',['numerCompra' => $request->input('e_NumFactura'),
+        'proveedorId' => $p, 
+        'fechaPago' => $request->input('e_FechaPago') , 
+        'fechaCompra' => $request->input('e_FechaCompra'),
+        'tipoPago' => $request->input('e_TipoPago')]);
     }
 }
