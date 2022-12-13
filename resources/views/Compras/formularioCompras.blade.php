@@ -30,15 +30,17 @@
                     <label for="NumFactura"> Número de factura </label>
                     <input type="text" style="width: 100%" class="form-control" name="NumFactura" id="NumFactura"
                         placeholder="Número de factura sin guiones" pattern="[0-9]{16}" required maxlength="16"
-                        value="{{ old('NumFactura') }}" title="Ingrese 16 caracteres sin guiones">
+                        {{-- #40. Corrección de la factura de compras --}}
+                        value="{{ $numerCompra }}" title="Ingrese 16 caracteres sin guiones">
                 </div>
             </div>
 
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="">Seleccione de que forma realizará la compra </label><br>
-                    <input required type="radio" id="Contado" name="PagoCompra" value="0" > Al contado <br>
-                    <input required type="radio" id="Crédito" name="PagoCompra" value="1" onchange="fp()" > A
+                    {{-- #40. Corrección de la factura de compras --}}
+                    <input required type="radio" id="Contado" name="PagoCompra" value="0" @if ($tipoPago == 0) @checked(true) @endif> Al contado <br>
+                    <input required type="radio" id="Crédito" name="PagoCompra" value="1" @if ($tipoPago == 1) @checked(true) @endif onchange="fp()" > A
                     crédito
                 </div>
             </div>
@@ -62,7 +64,8 @@
                     <select name="Proveedor" id="Proveedor" class="select222" required style="width: 100%">
                         <option style="display: none;" value="">Seleccione un proveedor</option>
                         @foreach ($proveedor as $p)
-                            <option value="{{ $p->id }}">{{ $p->EmpresaProveedora }}</option>
+                        {{-- #40. Corrección de la factura de compras --}}
+                            <option value="{{ $p->id }}" @if($proveedorId == $p->id) @selected(true) @endif>{{ $p->EmpresaProveedora }}</option>
                         @endforeach
                     </select>
 
@@ -74,7 +77,8 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label style="width: 100%" for="FechaCompra"> Fecha de la compra </label>
-                    <input style="width: 100%" type="date" class="form-control" name="FechaCompra" id="FechaCompra"
+                    {{-- #40. Corrección de la factura de compras --}}
+                    <input style="width: 100%" value="{{ $fechaCompra }}" type="date" class="form-control" name="FechaCompra" id="FechaCompra"
                         required maxlength="40" min="<?php echo date('Y-m-d', strtotime($fecha_actual . '- 1 month')); ?>" max="<?php echo date('Y-m-d', strtotime($fecha_actual )); ?>">
                 </div>
 
@@ -83,10 +87,11 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <!--Correccion del error N34 se establecio limite en el año -->
+                    {{-- #40. Corrección de la factura de compras --}}
                     <label style="width: 100%" for=""> Fecha del pago </label>
                     <input style="width: 100%" type="date" name="FechaPago"
                         class="form-control {{ $errors->has('FechaPago') ? 'is-invalid' : '' }}"
-                        value="{{ old('FechaPago') }}" id="FechaPago" title="Ingrese la fecha en la que hara el pago"
+                        value="{{ $fechaPago }}" id="FechaPago" title="Ingrese la fecha en la que hara el pago"
                         min="<?php echo date('Y-m-d', strtotime($fecha_actual . '+ 1 day')); ?>" max="
                          <?php echo date('Y-m-d', strtotime($fecha_actual . '+ 28 day')); ?>">
                 </div>
@@ -96,7 +101,8 @@
 
         <div class="row" style="width: 100%">
             <div class="col-sm-6">
-                <button data-toggle="modal" data-target="#agreagar_detalle" type="button" class="btn"
+                {{-- #40. Corrección de la factura de compras --}}
+                <button data-toggle="modal" data-target="#agreagar_detalle" onclick="agregar_cliente()" type="button" class="btn"
                     style="background-color:rgb(65, 145, 126); border-color:black; color:white">
                     <span class="glyphicon glyphicon-plus-sign"></span>
                     Agregar detalles</button>
@@ -250,6 +256,12 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                {{-- #40. Corrección de la factura de compras --}}
+                                <input type="text" name="n_NumFactura" id="n_NumFactura" hidden>
+                                <input type="text" name="n_Proveedor" id="n_Proveedor" hidden>
+                                <input type="text" name="n_FechaCompra" id="n_FechaCompra" hidden>
+                                <input type="text" name="n_FechaPago" id="n_FechaPago" hidden>
+                                <input type="text" name="n_TipoPago" id="n_TipoPago" hidden>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -480,6 +492,12 @@
                                     </select>
 
                                     <input type="text" name="IdDetalle" id="e_IdDetalle" hidden>
+                                    {{-- #40. Corrección de la factura de compras --}}
+                                    <input type="text" name="e_NumFactura" id="e_NumFactura" hidden>
+                                    <input type="text" name="e_Proveedor" id="e_Proveedor" hidden>
+                                    <input type="text" name="e_FechaCompra" id="e_FechaCompra" hidden>
+                                    <input type="text" name="e_FechaPago" id="e_FechaPago" hidden>
+                                    <input type="text" name="e_TipoPago" id="e_TipoPago" hidden>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -684,6 +702,31 @@
 
             });
 
+            /* #40. Corrección de la factura de compras */
+            function agregar_cliente() {
+                let Contado = document.getElementById("Contado").checked;
+                let Credito = document.getElementById("Crédito").checked;
+                var valor = 0;
+                if (Contado) {
+                    valor = 0;
+                } else{
+                    if(Credito) {
+                        valor = 1;
+                    }
+                }
+                    $('#e_NumFactura').val($('#NumFactura').val());
+                    $('#e_Proveedor').val($('#Proveedor').val());
+                    $('#e_FechaCompra').val($('#FechaCompra').val());
+                    $('#e_FechaPago').val($('#FechaPago').val());
+                    $('#e_TipoPago').val(valor);
+                    $('#n_NumFactura').val($('#NumFactura').val());
+                    $('#n_Proveedor').val($('#Proveedor').val());
+                    $('#n_FechaCompra').val($('#FechaCompra').val());
+                    $('#n_FechaPago').val($('#FechaPago').val());
+                    $('#n_TipoPago').val(valor);
+
+            }
+
             function editar_detalle(IdProducto, categoria_id, IdPresentacion, fecha, fecha_elaboración, Cantidad, Precio_venta,
                 Precio_compra, id) {
                 $('#e_IdCategoria').val(categoria_id);
@@ -697,6 +740,10 @@
                 $('#e_Precio_venta').val(Precio_venta);
                 $('#e_Precio_compra').val(Precio_compra);
                 $('#e_IdDetalle').val(id);
+
+                /* #40. Corrección de la factura de compras */
+                agregar_cliente();
+                
 
             }
 
