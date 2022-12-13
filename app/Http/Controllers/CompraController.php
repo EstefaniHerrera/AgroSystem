@@ -11,6 +11,7 @@ use App\Models\Categoria;
 use App\Models\Precio;
 use App\Models\Presentacion;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Carbon\Carbon;
 use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -100,11 +101,19 @@ class CompraController extends Controller
         return view('Compras.raizCompras', compact('proveedores', 'compras', 'id', 'fechadesde', 'fechahasta'));
     }
 
-    public function create($proveedors=0)
+    /* #40. Corrección de la factura de compra */
+    public function create($numerCompra='',$proveedorId=0,$fechaPago = 0, $fechaCompra = 0, $tipoPago = 0)
     {
         $total_cantidad = 0;
         $total_precio = 0;
         $total_impuesto = 0;
+
+        if($fechaPago == 0){
+            $fechaPago = Carbon::now()->format('Y-m-d');
+        }
+        if($fechaPago == 0){
+            $fechaCompra = Carbon::now()->format('Y-m-d');
+        }
 
         $detalles =  DetalleCompra::where('IdCompra', 0)->get();
         foreach ($detalles  as $key => $value) {
@@ -116,7 +125,7 @@ class CompraController extends Controller
             }
         }
 
-        $prov = Proveedor::find($proveedors);
+        $prov = Proveedor::all();
         $productos = Producto::all();
         $proveedor = Proveedor::all();
         $categoria = Categoria::all();
@@ -124,14 +133,19 @@ class CompraController extends Controller
 
         return view('Compras.formularioCompras')->with('detalles', $detalles)
             ->with('prov', $prov)
-            ->with('proveedors', $proveedors)
+            ->with('proveedors', $prov)
             ->with('productos', $productos)
             ->with('proveedor', $proveedor)
             ->with('presentacion', $presentacion)
             ->with('categoria', $categoria)
             ->with('total_cantidad', $total_cantidad)
             ->with('total_precio', $total_precio)
-            ->with('total_impuesto', $total_impuesto);
+            ->with('total_impuesto', $total_impuesto)
+            ->with('numerCompra', $numerCompra)
+            ->with('proveedorId', $proveedorId)
+            ->with('fechaPago', $fechaPago)
+            ->with('fechaCompra', $fechaCompra)
+            ->with('tipoPago', $tipoPago);
     }
 
     public function store(Request $request) {
