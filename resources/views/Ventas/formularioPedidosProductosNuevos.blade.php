@@ -34,7 +34,8 @@
                         style="width: 100%">
                         <option style="display: none;" value="">Seleccione un cliente</option>
                         @foreach ($cliente as $c)
-                            <option value="{{ $c->id }}" @if (old('ClienteP') == $c->id) @selected(true) @endif>
+                        {{-- Corrección de formulario de pedido de productos nuevos --}}
+                            <option value="{{ $c->id }}" @if (old('ClienteP') == $c->id) @selected(true) @endif @if($clien == $c->id) @selected(true) @endif>
                                 {{ $c->IdentidadDelCliente }}-{{ $c->NombresDelCliente }}
                                 {{ $c->ApellidosDelCliente }}
                             </option>
@@ -46,8 +47,9 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label style="width: 100%" for="TotalAnticipo"> Total del anticipo </label>
+                    {{-- Corrección de formulario de pedido de productos nuevos --}}
                     <input style="width: 100%" type="number" class="form-control" name="TotalAnticipo" id="TotalAnticipo"
-                        required maxlength="10" value="{{ old('TotalAnticipo') }}" min="0" max="9999"
+                        required maxlength="10" value="{{ $anticipo}}" min="0" max="9999"
                         title="Ingrese el total del anticipo en números, sin decimales." pattern="[0-9]+">
                 </div>
             </div>
@@ -66,7 +68,8 @@
 
         <div class="row" style="width: 100%">
             <div class="col-sm-12">
-                <button data-toggle="modal" data-target="#agreagar_detalleP" type="button" class="btn"
+                {{-- Corrección de formulario de pedido de productos nuevos --}}
+                <button data-toggle="modal" data-target="#agreagar_detalleP" onclick="agregar_cliente()" type="button" class="btn"
                     style="background-color:rgb(65, 145, 126); border-color:black; color:white">
                     <span class="glyphicon glyphicon-plus-sign"></span> Agregar
                     detalles</button>
@@ -182,6 +185,9 @@
 
                                 </div>
                             </div>
+                            {{-- Corrección de formulario de pedido de productos nuevos --}}
+                            <input type="text" name="n_cliente" id="n_cliente" hidden>
+                            <input type="text" name="n_anticipo" id="n_anticipo" hidden>
                         </div>
                         <div class="row" style="width: 100%">
                             <div class="col-sm-6">
@@ -238,6 +244,9 @@
                                         required>
 
                                 </div>
+                                {{-- Corrección de formulario de pedido de productos nuevos --}}
+                                <input type="text" name="e_cliente" id="e_cliente" hidden>
+                                <input type="text" name="e_anticipo" id="e_anticipo" hidden>
                             </div>
                         </div>
                         <div class="row" style="width: 100%">
@@ -280,11 +289,23 @@
                 });
             });
 
+            /* Corrección de formulario de pedido de productos nuevos */
+            function agregar_cliente() {
+                    $('#e_cliente').val($('#ClienteP').val());
+                    $('#e_anticipo').val($('#TotalAnticipo').val());
+                    $('#n_cliente').val($('#ClienteP').val());
+                    $('#n_anticipo').val($('#TotalAnticipo').val());
+
+            }
+
             function editar_detalleP(Producto, Presentacion, Cantidad, id) {
                 $('#e_NombreDelProducto').val(Producto);
                 $('#e_presentacion').val(Presentacion);
                 $('#e_Cantidad').val(Cantidad);
                 $('#e_IdDetalle').val(id);
+
+                /* Corrección de formulario de pedido de productos nuevos */
+                agregar_cliente()
 
             }
 
