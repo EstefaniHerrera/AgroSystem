@@ -106,7 +106,7 @@ class DetallesPedidosProveedorController extends Controller
         }
         //<!-- 62 y 63. Corrección de mantener proveedor al agregar y editar detalles -->
 
-        return redirect()->route('pedidosProveedor.crear',['idProveedorss' => $request->input('IdProveedor')]);
+        return redirect()->route('pedidosProveedor.crear',['idProveedorss' => $request->input('e_IdProveedor')]);
     }
 
     public function edit_agregar_detalle($id, Request $request)
