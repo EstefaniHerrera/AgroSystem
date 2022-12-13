@@ -78,7 +78,7 @@
             <label for="TeléfonoDelEncargado"> Teléfono del encargado </label>
             <input type="tel" class="form-control" name="TeléfonoDelEncargado" id="TeléfonoDelEncargado"
                 placeholder="00000000" pattern="([2-3, 8-9][0-9]{7})" required value="{{ old('TeléfonoDelEncargado') }}" 
-                maxlength="8" title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres">
+                maxlength="8" title="El teléfono debe comenzar con 2, 3, 8 o 9. Debe ingresar 8 caracteres"
                 {{-- # 20 Llamada a la funcion para que solo tome numeros  --}}
                 onkeypress="return valideKey(event);">
         </div>
